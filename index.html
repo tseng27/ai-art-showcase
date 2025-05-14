@@ -106,23 +106,7 @@
         </motion.section>
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-24 md:space-y-32 py-16">
-
-            <script>
-                // Helper for Framer Motion variants
-                const fadeInFromBottom = {
-                    initial: { opacity: 0, y: 50 },
-                    whileInView: { opacity: 1, y: 0 },
-                    viewport: { once: true, amount: 0.1 },
-                    transition: { duration: 0.6, ease: "easeOut" }
-                };
-                const fadeIn = {
-                    initial: { opacity: 0 },
-                    whileInView: { opacity: 1 },
-                    viewport: { once: true, amount: 0.1 },
-                    transition: { duration: 0.8, ease: "easeOut" }
-                };
-            </script>
-
+          
             <motion.section class="space-y-8" variants={fadeIn} initial="initial" whileInView="whileInView" viewport={{ once: true, amount: 0.1 }}>
                 <div class="text-center">
                     <h2 class="section-title-cn">序言 <span class="tech-blue">科技與藝術</span>的邂逅</h2>
