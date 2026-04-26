@@ -6,244 +6,52 @@
   <title>AI 藝術教學網站 | AI Art Learning Studio</title>
   <style>
     :root {
-      --bg: #090b12;
-      --bg-soft: #0f1422;
-      --card: rgba(255, 255, 255, 0.06);
-      --card-hover: rgba(255, 255, 255, 0.1);
-      --text: #ecf1ff;
-      --muted: #9aa6c8;
-      --line: rgba(171, 190, 255, 0.22);
-      --accent: #82a0ff;
-      --accent-2: #6ee7ff;
-      --shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+
     }
 
     * { box-sizing: border-box; }
 
     body {
       margin: 0;
-      color: var(--text);
-      background:
-        radial-gradient(40rem 40rem at 8% 8%, rgba(120, 92, 255, 0.2), transparent 62%),
-        radial-gradient(45rem 45rem at 88% 12%, rgba(71, 178, 255, 0.18), transparent 60%),
-        linear-gradient(160deg, #06080f 0%, #0b1020 45%, #080b14 100%);
-      font-family: "Noto Sans TC", "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
-      line-height: 1.75;
-      letter-spacing: 0.015em;
-      min-height: 100vh;
-    }
 
-    .container {
-      width: min(1140px, 92vw);
       margin: 0 auto;
     }
 
     header {
-      position: sticky;
-      top: 0;
-      z-index: 30;
-      backdrop-filter: blur(8px);
-      background: rgba(6, 9, 16, 0.7);
-      border-bottom: 1px solid rgba(151, 173, 255, 0.2);
+
     }
 
     .nav {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 1rem;
-      padding: 1rem 0;
+
     }
 
     .brand {
       font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: #f2f5ff;
-    }
 
-    .lang-switch {
-      display: inline-flex;
-      padding: 0.25rem;
-      border-radius: 999px;
-      border: 1px solid var(--line);
-      background: rgba(255, 255, 255, 0.03);
     }
 
     .lang-switch button {
       border: 0;
-      background: transparent;
-      color: var(--muted);
-      border-radius: 999px;
-      padding: 0.38rem 0.85rem;
-      cursor: pointer;
-      transition: all 0.25s ease;
-      font-size: 0.82rem;
-      letter-spacing: 0.05em;
-    }
 
-    .lang-switch button.active {
-      background: linear-gradient(120deg, rgba(130, 160, 255, 0.9), rgba(110, 231, 255, 0.9));
-      color: #071022;
-      font-weight: 700;
-    }
-
-    .hero {
-      position: relative;
-      text-align: center;
-      padding: 7.2rem 0 4.5rem;
-    }
-
-    .hero::before {
-      content: "";
-      position: absolute;
-      inset: 12% 18% auto;
-      height: 18rem;
-      background: radial-gradient(circle, rgba(131, 161, 255, 0.3) 0%, rgba(131, 161, 255, 0) 70%);
-      filter: blur(8px);
-      z-index: -1;
-    }
-
-    .eyebrow {
-      margin-bottom: 1.1rem;
-      color: var(--accent-2);
-      font-size: 0.82rem;
-      text-transform: uppercase;
-      letter-spacing: 0.22em;
     }
 
     h1 {
       margin: 0;
-      font-size: clamp(2rem, 6.2vw, 4rem);
-      line-height: 1.17;
-      letter-spacing: 0.03em;
-      text-wrap: balance;
-    }
 
-    .subtitle {
-      margin: 1.4rem auto 0;
-      max-width: 50rem;
-      color: var(--muted);
-      font-size: 1.06rem;
-    }
-
-    main {
-      padding-bottom: 3rem;
-    }
-
-    .section-card {
-      margin: 1.25rem 0;
-      padding: 1.5rem;
-      border-radius: 20px;
-      border: 1px solid var(--line);
-      background: var(--card);
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(12px);
-      transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease;
-    }
-
-    .section-card:hover {
-      transform: translateY(-4px);
-      border-color: rgba(160, 185, 255, 0.45);
-      background: var(--card-hover);
-    }
-
-    .section-head {
-      display: flex;
-      align-items: baseline;
-      gap: 0.8rem;
-      flex-wrap: wrap;
-      margin-bottom: 0.5rem;
-    }
-
-    .section-head h2 {
-      margin: 0;
-      font-size: 1.5rem;
-      letter-spacing: 0.02em;
-    }
-
-    .section-en {
-      color: var(--muted);
-      text-transform: uppercase;
-      font-size: 0.78rem;
-      letter-spacing: 0.15em;
-    }
-
-    .section-intro {
-      color: #c9d4f5;
-      margin: 0.4rem 0 0;
     }
 
     .grid {
       display: grid;
       gap: 1rem;
-      margin-top: 1.1rem;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    }
 
-    .card {
-      border-radius: 15px;
-      padding: 1rem 1rem 0.95rem;
-      border: 1px solid rgba(178, 196, 255, 0.25);
-      background: rgba(255, 255, 255, 0.04);
-      transition: transform 0.3s ease, border-color 0.3s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-3px);
-      border-color: rgba(178, 196, 255, 0.5);
     }
 
     .label {
       display: inline-block;
-      padding: 0.15rem 0.62rem;
-      border-radius: 999px;
-      border: 1px solid rgba(130, 160, 255, 0.65);
-      background: rgba(130, 160, 255, 0.13);
-      color: #c8d8ff;
-      font-size: 0.74rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      margin-bottom: 0.55rem;
-    }
 
-    .entry-card {
-      padding: 1.3rem;
-      border-radius: 18px;
-      border: 1px solid rgba(166, 186, 255, 0.35);
-      background:
-        linear-gradient(120deg, rgba(130, 160, 255, 0.16), rgba(105, 194, 255, 0.08)),
-        rgba(255, 255, 255, 0.04);
-      margin-top: 1.05rem;
-    }
-
-    .entry-title {
-      font-size: 1.03rem;
-      font-weight: 700;
-      margin-bottom: 0.3rem;
-      letter-spacing: 0.02em;
-    }
-
-    ul {
-      margin: 0.75rem 0 0;
-      padding-left: 1.1rem;
-    }
-
-    li { color: #dce5ff; }
-
-    footer {
-      text-align: center;
-      color: var(--muted);
-      padding: 1.5rem 0 2.2rem;
-      font-size: 0.88rem;
-      letter-spacing: 0.04em;
-    }
-
-    @media (max-width: 700px) {
-      .hero { padding: 5.8rem 0 3.2rem; }
-      .section-card { padding: 1.15rem; }
-      .section-head h2 { font-size: 1.25rem; }
-      .subtitle { font-size: 0.97rem; }
     }
   </style>
 </head>
@@ -260,21 +68,7 @@
 
   <main class="container">
     <section class="hero">
-      <div class="eyebrow" data-i18n="heroEyebrow">AI ART EDUCATION STUDIO</div>
-      <h1 data-i18n="heroTitle">用 AI 開啟藝術創作的新可能</h1>
-      <p class="subtitle" data-i18n="heroSubtitle">為高中美術課、AI藝術創作課程與學生作品展示打造的專業教學網站。</p>
-    </section>
 
-    <section class="section-card">
-      <div class="section-head">
-        <h2 data-i18n="introTitle">1. 課程介紹</h2>
-        <span class="section-en" data-i18n="introEn">Course Gateway</span>
-      </div>
-      <p class="section-intro" data-i18n="introText">從基礎到實作，帶你理解生成式 AI、提示詞設計、風格控制與作品評估。</p>
-      <div class="entry-card">
-        <div class="entry-title" data-i18n="entryTitle">AI 藝術創作課程入口</div>
-        <div data-i18n="entryText">依照學習階段進入課程：認識工具、建立創作語言、完成個人專題與展出。</div>
-      </div>
       <div class="grid">
         <article class="card">
           <span class="label" data-i18n="introCard1Label">入門</span>
@@ -291,12 +85,7 @@
       </div>
     </section>
 
-    <section class="section-card">
-      <div class="section-head">
-        <h2 data-i18n="galleryTitle">2. 學生作品展示</h2>
-        <span class="section-en" data-i18n="galleryEn">Student Showcase</span>
-      </div>
-      <p class="section-intro" data-i18n="galleryText">精選學生創作，呈現不同主題與技法：插畫、海報、概念設計與敘事影像。</p>
+
       <div class="grid">
         <article class="card"><strong data-i18n="work1Title">光影城市</strong><div data-i18n="work1Desc">主題：未來都市 / 技法：風格混合</div></article>
         <article class="card"><strong data-i18n="work2Title">自然機械</strong><div data-i18n="work2Desc">主題：生態想像 / 技法：材質細節強化</div></article>
@@ -304,12 +93,7 @@
       </div>
     </section>
 
-    <section class="section-card">
-      <div class="section-head">
-        <h2 data-i18n="toolsTitle">3. AI 工具教學</h2>
-        <span class="section-en" data-i18n="toolsEn">Tool Training</span>
-      </div>
-      <p class="section-intro" data-i18n="toolsText">以步驟化教學介紹常見 AI 藝術工具，並搭配案例練習。</p>
+
       <ul>
         <li data-i18n="toolItem1">文字轉圖像（Text-to-Image）基本流程</li>
         <li data-i18n="toolItem2">提示詞模板與迭代技巧</li>
@@ -317,12 +101,7 @@
       </ul>
     </section>
 
-    <section class="section-card">
-      <div class="section-head">
-        <h2 data-i18n="bilingualTitle">4. 雙語介面</h2>
-        <span class="section-en" data-i18n="bilingualEn">Bilingual UI</span>
-      </div>
-      <p class="section-intro" data-i18n="bilingualText">支援中文 / English 一鍵切換，協助跨語言學習與國際展示。</p>
+
     </section>
   </main>
 
@@ -332,14 +111,7 @@
     const i18n = {
       zh: {
         brand: "AI 藝術學院",
-        heroEyebrow: "AI ART EDUCATION STUDIO",
-        heroTitle: "用 AI 開啟藝術創作的新可能",
-        heroSubtitle: "為高中美術課、AI藝術創作課程與學生作品展示打造的專業教學網站。",
-        introTitle: "1. 課程介紹",
-        introEn: "Course Gateway",
-        introText: "從基礎到實作，帶你理解生成式 AI、提示詞設計、風格控制與作品評估。",
-        entryTitle: "AI 藝術創作課程入口",
-        entryText: "依照學習階段進入課程：認識工具、建立創作語言、完成個人專題與展出。",
+
         introCard1Label: "入門",
         introCard1: "AI 藝術概念、工具環境設定、基本提示詞。",
         introCard2Label: "進階",
@@ -347,7 +119,7 @@
         introCard3Label: "專題",
         introCard3: "個人專題發表，建立作品集與展覽頁面。",
         galleryTitle: "2. 學生作品展示",
-        galleryEn: "Student Showcase",
+>> main
         galleryText: "精選學生創作，呈現不同主題與技法：插畫、海報、概念設計與敘事影像。",
         work1Title: "光影城市",
         work1Desc: "主題：未來都市 / 技法：風格混合",
@@ -356,26 +128,19 @@
         work3Title: "記憶拼貼",
         work3Desc: "主題：個人故事 / 技法：敘事型提示詞",
         toolsTitle: "3. AI 工具教學",
-        toolsEn: "Tool Training",
+>>>> main
         toolsText: "以步驟化教學介紹常見 AI 藝術工具，並搭配案例練習。",
         toolItem1: "文字轉圖像（Text-to-Image）基本流程",
         toolItem2: "提示詞模板與迭代技巧",
         toolItem3: "圖像後製與作品輸出格式",
         bilingualTitle: "4. 雙語介面",
-        bilingualEn: "Bilingual UI",
+>>>>> main
         bilingualText: "支援中文 / English 一鍵切換，協助跨語言學習與國際展示。",
         footer: "© 2026 AI Art Learning Studio"
       },
       en: {
         brand: "AI Art Academy",
-        heroEyebrow: "AI ART EDUCATION STUDIO",
-        heroTitle: "Create New Artistic Possibilities with AI",
-        heroSubtitle: "A professional platform for high school art classes, AI art creation courses, and student showcases.",
-        introTitle: "1. Course Introduction",
-        introEn: "Course Gateway",
-        introText: "Learn generative AI, prompt design, style control, and project evaluation from basics to practice.",
-        entryTitle: "AI Art Creation Entry Point",
-        entryText: "Start by stage: understand tools, build visual language, complete your capstone, and prepare for exhibition.",
+main
         introCard1Label: "Foundation",
         introCard1: "Core AI art concepts, tool setup, and starter prompts.",
         introCard2Label: "Advanced",
@@ -383,7 +148,7 @@
         introCard3Label: "Capstone",
         introCard3: "Present your personal project and build a portfolio page.",
         galleryTitle: "2. Student Works Gallery",
-        galleryEn: "Student Showcase",
+ main
         galleryText: "Featured student projects across illustration, posters, concept art, and visual storytelling.",
         work1Title: "City of Light",
         work1Desc: "Theme: Future city / Technique: Style blending",
@@ -392,13 +157,13 @@
         work3Title: "Memory Collage",
         work3Desc: "Theme: Personal story / Technique: Narrative prompting",
         toolsTitle: "3. AI Tool Tutorials",
-        toolsEn: "Tool Training",
+
         toolsText: "Step-by-step lessons for common AI art tools with practical exercises.",
         toolItem1: "Text-to-image workflow essentials",
         toolItem2: "Prompt templates and iteration techniques",
         toolItem3: "Post-editing and export formats",
         bilingualTitle: "4. Bilingual Interface",
-        bilingualEn: "Bilingual UI",
+>>>> main
         bilingualText: "Switch between Chinese and English to support global learning and showcases.",
         footer: "© 2026 AI Art Learning Studio"
       }
@@ -413,6 +178,7 @@
         const key = el.dataset.i18n;
         if (i18n[lang][key]) el.textContent = i18n[lang][key];
       });
+>>>>> main
       zhBtn.classList.toggle("active", lang === "zh");
       enBtn.classList.toggle("active", lang === "en");
     }
