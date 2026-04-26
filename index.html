@@ -1,18 +1,671 @@
-<section id="my-gallery" class="container">
-  <div class="section-title">
-    <h2>04 — 我的 AI 藝術作品展示</h2>
-    <p>展示教師個人的 AI 藝術創作、系列作品與實驗成果。</p>
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI 藝術學院｜AI Art Learning Studio</title>
+
+  <style>
+    :root {
+      --bg: #0f1115;
+      --card: rgba(255, 255, 255, 0.06);
+      --border: rgba(255, 255, 255, 0.12);
+      --text: #f4f4f5;
+      --muted: #a1a7b3;
+      --accent: #7dd3fc;
+      --accent2: #a78bfa;
+      --gold: #f5d48a;
+      --radius: 26px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Noto Sans TC", "Inter", sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(125, 211, 252, 0.2), transparent 32%),
+        radial-gradient(circle at 20% 10%, rgba(167, 139, 250, 0.2), transparent 28%),
+        #0f1115;
+      color: var(--text);
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1180px, 92%);
+      margin: auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(15, 17, 21, 0.82);
+      backdrop-filter: blur(22px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav {
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      font-size: 0.9rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .hero {
+      padding: 110px 0 88px;
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 52px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      color: var(--gold);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-size: 0.78rem;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: clamp(3.2rem, 7vw, 6.8rem);
+      line-height: 0.98;
+      letter-spacing: -0.06em;
+      margin-bottom: 28px;
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 1.15rem;
+      max-width: 720px;
+      margin-bottom: 34px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 13px 20px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      transition: 0.3s;
+      color: var(--text);
+    }
+
+    .btn.primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: #0f1115;
+      border: none;
+      font-weight: 800;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .hero-visual {
+      min-height: 540px;
+      border-radius: 38px;
+      border: 1px solid var(--border);
+      background:
+        linear-gradient(to top, rgba(15,17,21,0.95), rgba(15,17,21,0.18)),
+        radial-gradient(circle at 35% 30%, rgba(125,211,252,0.45), transparent 28%),
+        radial-gradient(circle at 72% 46%, rgba(167,139,250,0.42), transparent 32%),
+        linear-gradient(135deg, rgba(255,255,255,0.12), rgba(255,255,255,0.02));
+      box-shadow: 0 30px 90px rgba(0,0,0,0.38);
+      position: relative;
+      overflow: hidden;
+      padding: 36px;
+      display: flex;
+      align-items: end;
+    }
+
+    .hero-visual::before {
+      content: "";
+      position: absolute;
+      inset: 10%;
+      border-radius: 28px;
+      background:
+        linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px),
+        linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px);
+      background-size: 36px 36px;
+      opacity: 0.5;
+    }
+
+    .visual-caption {
+      position: relative;
+      z-index: 2;
+    }
+
+    .visual-caption span {
+      color: var(--accent);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-size: 0.82rem;
+    }
+
+    .visual-caption h3 {
+      font-size: 1.7rem;
+      margin-top: 10px;
+    }
+
+    section {
+      padding: 74px 0;
+    }
+
+    .section-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 28px;
+      margin-bottom: 34px;
+    }
+
+    .section-title h2 {
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      letter-spacing: -0.04em;
+    }
+
+    .section-title p {
+      color: var(--muted);
+      max-width: 560px;
+    }
+
+    .grid {
+      display: grid;
+      gap: 22px;
+    }
+
+    .grid-2 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .grid-3 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .grid-4 {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 30px;
+      box-shadow: 0 24px 70px rgba(0,0,0,0.22);
+      transition: 0.35s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(125, 211, 252, 0.45);
+      background: rgba(255,255,255,0.085);
+    }
+
+    .tag {
+      display: inline-block;
+      color: var(--accent);
+      border: 1px solid rgba(125,211,252,0.32);
+      padding: 5px 10px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      margin-bottom: 16px;
+    }
+
+    .card h3 {
+      font-size: 1.45rem;
+      margin-bottom: 10px;
+    }
+
+    .card p, .card li {
+      color: var(--muted);
+    }
+
+    .card ul {
+      padding-left: 18px;
+      margin-top: 10px;
+    }
+
+    .image-block {
+      height: 150px;
+      border-radius: 18px;
+      margin-bottom: 22px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background:
+        linear-gradient(to top, rgba(15,17,21,0.88), rgba(15,17,21,0.12)),
+        radial-gradient(circle at 30% 35%, rgba(125,211,252,0.38), transparent 30%),
+        radial-gradient(circle at 75% 55%, rgba(167,139,250,0.35), transparent 28%),
+        linear-gradient(135deg, rgba(255,255,255,0.11), rgba(255,255,255,0.02));
+    }
+
+    .image-block.video {
+      background:
+        linear-gradient(to top, rgba(15,17,21,0.9), rgba(15,17,21,0.16)),
+        repeating-linear-gradient(90deg, rgba(255,255,255,0.1) 0 2px, transparent 2px 22px),
+        radial-gradient(circle at 70% 40%, rgba(167,139,250,0.42), transparent 34%),
+        linear-gradient(135deg, rgba(125,211,252,0.18), rgba(255,255,255,0.02));
+    }
+
+    .image-block.prompt {
+      background:
+        linear-gradient(to top, rgba(15,17,21,0.9), rgba(15,17,21,0.14)),
+        radial-gradient(circle at 25% 30%, rgba(245,212,138,0.22), transparent 28%),
+        radial-gradient(circle at 75% 60%, rgba(125,211,252,0.38), transparent 32%),
+        linear-gradient(135deg, rgba(167,139,250,0.16), rgba(255,255,255,0.02));
+    }
+
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 14px;
+    }
+
+    .step {
+      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 22px;
+      min-height: 150px;
+    }
+
+    .num {
+      color: var(--gold);
+      font-size: 0.85rem;
+      margin-bottom: 14px;
+    }
+
+    .platform-card {
+      min-height: 190px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .platform-card .arrow {
+      color: var(--gold);
+      margin-top: 22px;
+    }
+
+    .work-image {
+      height: 260px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+      background-size: cover;
+      background-position: center;
+      border: 1px solid rgba(255,255,255,0.12);
+      cursor: pointer;
+    }
+
+    .placeholder {
+      padding: 34px;
+      border-radius: 24px;
+      background: rgba(255,255,255,0.05);
+      border: 1px dashed rgba(255,255,255,0.18);
+      color: var(--muted);
+    }
+
+    .tools {
+      background: linear-gradient(135deg, rgba(125,211,252,0.12), rgba(167,139,250,0.12));
+      border: 1px solid var(--border);
+      border-radius: 36px;
+      padding: 48px;
+    }
+
+    .prompt-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .prompt-chip {
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.06);
+      border-radius: 18px;
+      padding: 18px 14px;
+      text-align: center;
+      color: var(--muted);
+    }
+
+    .prompt-chip strong {
+      display: block;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    footer {
+      padding: 50px 0;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      margin-top: 40px;
+      font-size: 0.9rem;
+    }
+
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.88);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 99;
+      padding: 28px;
+    }
+
+    .lightbox img {
+      max-width: 92%;
+      max-height: 90vh;
+      border-radius: 18px;
+      box-shadow: 0 30px 90px rgba(0,0,0,0.5);
+    }
+
+    @media (max-width: 1000px) {
+      .hero, .grid-2, .grid-3, .grid-4, .flow, .prompt-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding: 82px 0 56px;
+      }
+
+      .hero-visual {
+        min-height: 360px;
+      }
+
+      .section-title {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .tools {
+        padding: 30px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand">AI ART LEARNING STUDIO</div>
+
+      <nav class="nav-links">
+        <a href="#course">課程介紹</a>
+        <a href="#practice">創作流程</a>
+        <a href="#platforms">延伸平台</a>
+        <a href="#my-gallery">我的作品</a>
+        <a href="#student-gallery">學生作品</a>
+        <a href="#tools">AI工具教學</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero container">
+      <div>
+        <div class="eyebrow">Generative AI × Art Education</div>
+
+        <h1>AI藝術創作課程</h1>
+
+        <p>
+          從想像、提示詞、圖像到影片，學習如何運用生成式 AI 建立自己的視覺語言，
+          讓創意成為可被看見、可被敘事、可被發表的作品。
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn primary" href="#course">開始探索課程</a>
+          <a class="btn" href="#my-gallery">觀看作品展示</a>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="visual-caption">
+          <span>AI Art Classroom</span>
+          <h3>生成式AI藝術教室</h3>
+          <p>以影像、分鏡與提示詞建立完整創作流程。</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="course" class="container">
+      <div class="section-title">
+        <h2>01 — 課程介紹</h2>
+        <p>讓學生理解生成式 AI 可以如何應用於藝術創作，並學會用提示詞生成自己想要的圖像與影片。</p>
+      </div>
+
+      <div class="grid grid-3">
+        <article class="card">
+          <div class="image-block"></div>
+          <span class="tag">Image Generation</span>
+          <h3>AI 圖像生成</h3>
+          <p>學習角色設計、場景建構、風格控制與視覺敘事，將腦中的想法轉化為具體圖像。</p>
+        </article>
+
+        <article class="card">
+          <div class="image-block video"></div>
+          <span class="tag">Video Creation</span>
+          <h3>AI 影片生成</h3>
+          <p>從單張圖像延伸為動態影像，理解分鏡、運鏡、光影與情緒如何影響影片表現。</p>
+        </article>
+
+        <article class="card">
+          <div class="image-block prompt"></div>
+          <span class="tag">Prompt Design</span>
+          <h3>提示詞設計</h3>
+          <p>提示詞不是指令，而是一種創作語言。學生將學會描述主體、風格、構圖、光線與氛圍。</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="practice" class="container">
+      <div class="section-title">
+        <h2>02 — 創作流程</h2>
+        <p>本課程不只是使用 AI，而是設計一套完整的創作流程。</p>
+      </div>
+
+      <div class="flow">
+        <div class="step"><div class="num">STEP 01</div><h3>觀察</h3><p>從名畫、影像與生活經驗中找到視覺線索。</p></div>
+        <div class="step"><div class="num">STEP 02</div><h3>情緒</h3><p>將畫面轉化為情感、氣氛與敘事方向。</p></div>
+        <div class="step"><div class="num">STEP 03</div><h3>Prompt</h3><p>用結構化文字描述作品想法。</p></div>
+        <div class="step"><div class="num">STEP 04</div><h3>圖像</h3><p>生成符合主題與風格的視覺作品。</p></div>
+        <div class="step"><div class="num">STEP 05</div><h3>分鏡</h3><p>設計畫面、鏡頭、光影與節奏。</p></div>
+        <div class="step"><div class="num">STEP 06</div><h3>影片</h3><p>將靜態作品延伸為動態影像。</p></div>
+      </div>
+    </section>
+
+    <section id="platforms" class="container">
+      <div class="section-title">
+        <h2>03 — 延伸平台</h2>
+        <p>連結 AI 教學紀錄、AI 藝術創作與社群平台，建立完整的 AI 藝術教學入口。</p>
+      </div>
+
+      <div class="grid grid-4">
+        <a class="card platform-card" href="#" target="_blank">
+          <div>
+            <span class="tag">Teaching</span>
+            <h3>AI教學觀察所</h3>
+            <p>記錄 AI 融入美術教學的課程觀察與實踐反思。</p>
+          </div>
+          <div class="arrow">前往 →</div>
+        </a>
+
+        <a class="card platform-card" href="#" target="_blank">
+          <div>
+            <span class="tag">Studio</span>
+            <h3>AI藝術創新實驗室</h3>
+            <p>展示 AI 藝術創作、實驗作品與跨媒材創作流程。</p>
+          </div>
+          <div class="arrow">前往 →</div>
+        </a>
+
+        <a class="card platform-card" href="請貼上你的Facebook網址" target="_blank">
+          <div>
+            <span class="tag">Facebook</span>
+            <h3>Facebook</h3>
+            <p>連結你的教學紀錄、AI藝術創作與社群發表。</p>
+          </div>
+          <div class="arrow">前往 →</div>
+        </a>
+
+        <a class="card platform-card" href="請貼上你的Instagram網址" target="_blank">
+          <div>
+            <span class="tag">Instagram</span>
+            <h3>Instagram</h3>
+            <p>展示圖像作品、創作片段與視覺實驗。</p>
+          </div>
+          <div class="arrow">前往 →</div>
+        </a>
+      </div>
+    </section>
+
+    <section id="my-gallery" class="container">
+      <div class="section-title">
+        <h2>04 — 我的 AI 藝術作品展示</h2>
+        <p>展示教師個人的 AI 藝術創作、系列作品與實驗成果。</p>
+      </div>
+
+      <div class="grid grid-3">
+        <article class="card">
+          <div class="work-image" onclick="openLightbox('images/test.png')" style="background-image:
+            linear-gradient(to top, rgba(15,17,21,0.86), rgba(15,17,21,0.08)),
+            url('images/test.png');">
+          </div>
+          <span class="tag">AI Art Series</span>
+          <h3>編織巨貓</h3>
+          <p>AI 生成的大型纖維藝術裝置想像，探索柔軟材質、公共互動與當代藝術展示的可能性。</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="student-gallery" class="container">
+      <div class="section-title">
+        <h2>05 — 學生作品展示</h2>
+        <p>之後可依照 AI 圖像生成、影片分鏡、Prompt 設計與作品集成果分類展示學生作品。</p>
+      </div>
+
+      <div class="placeholder">
+        學生作品尚未上傳。之後可將圖片放入：
+        <br />
+        <code>images/students/image-generation/</code>
+        <br />
+        <code>images/students/video-storyboard/</code>
+        <br />
+        <code>images/students/prompt-design/</code>
+        <br />
+        <code>images/students/portfolio/</code>
+      </div>
+    </section>
+
+    <section id="tools" class="container">
+      <div class="tools">
+        <div class="section-title">
+          <h2>06 — AI 工具教學</h2>
+          <p>學生將學會如何從文字生成圖像，並進一步延伸為影片與作品集。</p>
+        </div>
+
+        <div class="grid grid-2">
+          <article class="card">
+            <span class="tag">Text to Image</span>
+            <h3>文字轉圖像</h3>
+            <ul>
+              <li>主體描述</li>
+              <li>風格與媒材</li>
+              <li>構圖與鏡頭</li>
+              <li>光影與氛圍</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <span class="tag">Image to Video</span>
+            <h3>圖像轉影片</h3>
+            <ul>
+              <li>分鏡設計</li>
+              <li>鏡頭運動</li>
+              <li>情緒節奏</li>
+              <li>影片輸出與發表</li>
+            </ul>
+          </article>
+        </div>
+
+        <div class="card" style="margin-top:36px;">
+          <span class="tag">Prompt Lab</span>
+          <h3>Prompt 提示詞教學</h3>
+          <p>提示詞不是單純下指令，而是一種創作語言。好的提示詞能幫助 AI 更接近你的想像，也能讓創作者更清楚自己的選擇。</p>
+
+          <div class="prompt-grid">
+            <div class="prompt-chip"><strong>主體</strong>人物、物件、場景</div>
+            <div class="prompt-chip"><strong>動作</strong>正在發生的事</div>
+            <div class="prompt-chip"><strong>場景</strong>時間、地點、環境</div>
+            <div class="prompt-chip"><strong>風格</strong>攝影、插畫、水墨</div>
+            <div class="prompt-chip"><strong>構圖</strong>近景、全景、角度</div>
+            <div class="prompt-chip"><strong>光影</strong>柔光、逆光、霓虹</div>
+            <div class="prompt-chip"><strong>氛圍</strong>寧靜、神秘、未來感</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      © 2026 AI Art Learning Studio｜Designed for AI Art Education
+    </div>
+  </footer>
+
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <img id="lightbox-img" src="" alt="作品放大檢視">
   </div>
 
-  <div class="grid grid-3">
-    <article class="card">
-      <div class="work-image" style="background-image:
-        linear-gradient(to top, rgba(15,17,21,0.88), rgba(15,17,21,0.12)),
-        url('images/test.png');">
-      </div>
-      <span class="tag">AI Art Series</span>
-      <h3>編織巨貓</h3>
-      <p>AI 生成的大型纖維藝術裝置想像。</p>
-    </article>
-  </div>
-</section>
+  <script>
+    function openLightbox(src) {
+      document.getElementById("lightbox-img").src = src;
+      document.getElementById("lightbox").style.display = "flex";
+    }
+
+    function closeLightbox() {
+      document.getElementById("lightbox").style.display = "none";
+    }
+  </script>
+</body>
+</html>
