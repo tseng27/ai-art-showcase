@@ -8,11 +8,11 @@
   <style>
     :root {
       --bg: #0f1115;
-      --surface: rgba(255, 255, 255, 0.05);
-      --surface-strong: rgba(255, 255, 255, 0.08);
+      --surface: rgba(255, 255, 255, 0.07);
+      --surface-strong: rgba(255, 255, 255, 0.11);
       --text: #edf2ff;
       --muted: #a9b5d6;
-      --line: rgba(160, 178, 230, 0.25);
+      --line: rgba(160, 178, 230, 0.34);
       --accent: #8ea7ff;
       --accent-2: #67d8ff;
       --shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
@@ -30,7 +30,7 @@
       background-color: var(--bg);
       color: var(--text);
       font-family: "Noto Sans TC", "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
-      line-height: 1.72;
+      line-height: 1.75;
       letter-spacing: 0.015em;
       min-height: 100vh;
     }
@@ -90,11 +90,11 @@
       font-weight: 700;
     }
 
-    main { padding-bottom: 2.6rem; }
+    main { padding: 0.5rem 0 3rem; }
 
     .hero {
       text-align: center;
-      padding: 7rem 0 4.5rem;
+      padding: 7.4rem 0 4.8rem;
       position: relative;
     }
 
@@ -136,19 +136,19 @@
     }
 
     .section-card {
-      margin: 1.2rem 0;
-      padding: 1.5rem;
+      margin: 1.45rem 0;
+      padding: 1.7rem;
       border-radius: 20px;
       border: 1px solid var(--line);
       background: var(--surface);
-      box-shadow: var(--shadow);
+      box-shadow: var(--shadow), inset 0 1px 0 rgba(255, 255, 255, 0.06);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
       transition: transform 0.28s ease, border-color 0.28s ease, background 0.28s ease;
     }
 
     .section-card:hover {
-      transform: translateY(-4px);
+      transform: translateY(-5px);
       border-color: rgba(170, 190, 245, 0.45);
       background: var(--surface-strong);
     }
@@ -180,8 +180,8 @@
     }
 
     .entry-card {
-      margin-top: 1rem;
-      padding: 1.2rem;
+      margin-top: 1.15rem;
+      padding: 1.3rem;
       border: 1px solid rgba(162, 182, 240, 0.32);
       border-radius: 16px;
       background:
@@ -199,7 +199,7 @@
     .grid {
       display: grid;
       gap: 1rem;
-      margin-top: 1rem;
+      margin-top: 1.2rem;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     }
 
@@ -207,12 +207,12 @@
       border: 1px solid rgba(170, 188, 242, 0.28);
       border-radius: 14px;
       background: rgba(255, 255, 255, 0.04);
-      padding: 1rem;
+      padding: 1.1rem;
       transition: transform 0.24s ease, border-color 0.24s ease;
     }
 
     .card:hover {
-      transform: translateY(-3px);
+      transform: translateY(-4px);
       border-color: rgba(180, 199, 255, 0.5);
     }
 
@@ -245,8 +245,8 @@
     }
 
     @media (max-width: 760px) {
-      .hero { padding: 5.8rem 0 3.3rem; }
-      .section-card { padding: 1.15rem; border-radius: 16px; }
+      .hero { padding: 6rem 0 3.4rem; }
+      .section-card { padding: 1.2rem; border-radius: 16px; }
       .section-head h2 { font-size: 1.28rem; }
       .subtitle { font-size: 0.97rem; }
     }
