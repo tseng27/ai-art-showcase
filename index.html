@@ -1,161 +1,18 @@
-<!DOCTYPE html>
-<html lang="zh-Hant">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI Art Learning Studio</title>
+<section id="my-gallery" class="container">
+  <div class="section-title">
+    <h2>04 — 我的 AI 藝術作品展示</h2>
+    <p>展示教師個人的 AI 藝術創作、系列作品與實驗成果。</p>
+  </div>
 
-<style>
-body{
-    margin:0;
-    font-family:"Noto Sans TC", sans-serif;
-    background:#0f1115;
-    color:#fff;
-}
-
-/* 標題 */
-header{
-    padding:40px;
-    text-align:center;
-    font-size:28px;
-    font-weight:bold;
-}
-
-/* 區塊 */
-.section{
-    padding:40px;
-    max-width:1200px;
-    margin:auto;
-}
-
-/* 分類標題 */
-.section h2{
-    margin-bottom:20px;
-    border-left:4px solid #00c3ff;
-    padding-left:10px;
-}
-
-/* 圖片牆 */
-.gallery{
-    display:grid;
-    grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
-    gap:20px;
-}
-
-/* 圖片卡片 */
-.card{
-    overflow:hidden;
-    border-radius:12px;
-    cursor:pointer;
-    position:relative;
-}
-
-.card img{
-    width:100%;
-    display:block;
-    transition:0.4s;
-}
-
-.card:hover img{
-    transform:scale(1.1);
-}
-
-/* 放大視窗 */
-.lightbox{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    background:rgba(0,0,0,0.9);
-    display:none;
-    align-items:center;
-    justify-content:center;
-}
-
-.lightbox img{
-    max-width:90%;
-    max-height:90%;
-}
-
-/* 社群 */
-.social{
-    text-align:center;
-    padding:40px;
-}
-
-.social a{
-    margin:0 10px;
-    color:#00c3ff;
-    text-decoration:none;
-}
-</style>
-
-</head>
-
-<body>
-
-<header>
-AI 藝術教學與作品展示
-</header>
-
-<!-- 你的作品 -->
-<div class="section">
-<h2>🎨 我的作品</h2>
-<div class="gallery">
-
-<div class="card" onclick="openImg(this)">
-<img src="images/test.png">
-</div>
-
-</div>
-</div>
-
-<!-- 學生作品 -->
-<div class="section">
-<h2>👨‍🎓 學生作品｜高一</h2>
-<div class="gallery">
-
-<div class="card" onclick="openImg(this)">
-<img src="images/test.png">
-</div>
-
-</div>
-</div>
-
-<div class="section">
-<h2>👨‍🎓 學生作品｜高二</h2>
-<div class="gallery">
-
-<div class="card" onclick="openImg(this)">
-<img src="images/test.png">
-</div>
-
-</div>
-</div>
-
-<!-- 社群 -->
-<div class="social">
-<h2>🔗 我的平台</h2>
-<a href="https://facebook.com" target="_blank">Facebook</a>
-<a href="https://instagram.com" target="_blank">Instagram</a>
-</div>
-
-<!-- 放大 -->
-<div class="lightbox" id="lightbox" onclick="closeImg()">
-<img id="lightbox-img">
-</div>
-
-<script>
-function openImg(el){
-    document.getElementById("lightbox").style.display="flex";
-    document.getElementById("lightbox-img").src=el.querySelector("img").src;
-}
-
-function closeImg(){
-    document.getElementById("lightbox").style.display="none";
-}
-</script>
-
-</body>
-</html>
+  <div class="grid grid-3">
+    <article class="card">
+      <div class="work-image" style="background-image:
+        linear-gradient(to top, rgba(15,17,21,0.88), rgba(15,17,21,0.12)),
+        url('images/test.png');">
+      </div>
+      <span class="tag">AI Art Series</span>
+      <h3>編織巨貓</h3>
+      <p>AI 生成的大型纖維藝術裝置想像。</p>
+    </article>
+  </div>
+</section>
