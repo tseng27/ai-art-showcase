@@ -7,20 +7,18 @@
 
   <style>
     :root {
-      --bg: #eef2f7;
-      --dark: #05070c;
-      --glass: rgba(255, 255, 255, 0.22);
-      --glass-dark: rgba(8, 10, 18, 0.72);
-      --border: rgba(255, 255, 255, 0.55);
-      --text: #f8fafc;
-      --muted: rgba(255,255,255,0.72);
-      --black: #05070c;
-      --cyan: #22d3ee;
-      --blue: #3b82f6;
-      --pink: #ec4899;
-      --violet: #8b5cf6;
-      --gold: #facc15;
-      --green: #22c55e;
+      --bg: #eef2f6;
+      --dark: #0b0f16;
+      --text: #0b0f16;
+      --muted: #5f6673;
+      --glass: rgba(255,255,255,0.28);
+      --glass-dark: rgba(8,12,20,0.72);
+      --border: rgba(255,255,255,0.65);
+      --blue: #4cc9ff;
+      --purple: #a78bfa;
+      --pink: #ff4fd8;
+      --green: #27e0a3;
+      --gold: #ffd66b;
       --radius: 34px;
     }
 
@@ -37,13 +35,14 @@
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Noto Sans TC", "Inter", sans-serif;
       background:
-        radial-gradient(circle at 15% 20%, rgba(34,211,238,0.25), transparent 28%),
-        radial-gradient(circle at 80% 10%, rgba(236,72,153,0.23), transparent 26%),
-        radial-gradient(circle at 70% 80%, rgba(139,92,246,0.24), transparent 30%),
-        linear-gradient(135deg, #eef2f7, #cfd8e3);
-      color: var(--black);
-      line-height: 1.75;
+        radial-gradient(circle at 15% 20%, rgba(76,201,255,.35), transparent 30%),
+        radial-gradient(circle at 85% 25%, rgba(255,79,216,.28), transparent 28%),
+        radial-gradient(circle at 25% 85%, rgba(39,224,163,.28), transparent 30%),
+        linear-gradient(135deg, #f8fafc, #dce3ec 48%, #f5f0ff);
+      color: var(--text);
+      line-height: 1.7;
       min-height: 100vh;
+      overflow-x: hidden;
     }
 
     a {
@@ -59,68 +58,75 @@
     header {
       position: sticky;
       top: 0;
-      z-index: 20;
-      background: rgba(255,255,255,0.38);
-      backdrop-filter: blur(24px) saturate(150%);
-      border-bottom: 1px solid rgba(255,255,255,0.45);
-      box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+      z-index: 50;
+      backdrop-filter: blur(24px) saturate(170%);
+      background: rgba(255,255,255,0.42);
+      border-bottom: 1px solid rgba(255,255,255,0.65);
+      box-shadow: 0 12px 40px rgba(15,23,42,0.08);
     }
 
     .nav {
-      height: 78px;
+      height: 76px;
       display: flex;
-      align-items: center;
       justify-content: space-between;
+      align-items: center;
     }
 
     .brand {
       font-weight: 900;
-      letter-spacing: 0.12em;
-      font-size: 0.9rem;
-      color: #0b1020;
+      letter-spacing: -0.04em;
+      font-size: 1.05rem;
     }
 
     .nav-links {
       display: flex;
-      gap: 20px;
-      color: rgba(5,7,12,0.72);
-      font-size: 0.9rem;
-      font-weight: 600;
+      gap: 18px;
+      font-size: 0.92rem;
+      color: rgba(15,23,42,0.72);
+    }
+
+    .nav-links a {
+      padding: 9px 14px;
+      border-radius: 999px;
+      transition: .3s;
     }
 
     .nav-links a:hover {
+      background: rgba(255,255,255,.55);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.8);
       color: #000;
     }
 
     .hero {
-      padding: 118px 0 92px;
+      min-height: 88vh;
       display: grid;
-      grid-template-columns: 1.05fr 0.95fr;
-      gap: 56px;
+      grid-template-columns: 1.05fr .95fr;
       align-items: center;
+      gap: 54px;
+      padding: 90px 0;
     }
 
     .eyebrow {
       color: #7c3aed;
-      letter-spacing: 0.2em;
+      letter-spacing: .18em;
+      font-size: .78rem;
       text-transform: uppercase;
-      font-size: 0.78rem;
-      margin-bottom: 22px;
+      margin-bottom: 18px;
       font-weight: 800;
     }
 
     h1 {
-      font-size: clamp(3.3rem, 7vw, 6.8rem);
-      line-height: 0.96;
-      letter-spacing: -0.075em;
-      margin-bottom: 30px;
-      color: #05070c;
+      font-size: clamp(3.6rem, 8vw, 7.6rem);
+      line-height: .9;
+      letter-spacing: -0.08em;
+      margin-bottom: 28px;
+      color: #030712;
     }
 
     .hero p {
-      color: rgba(5,7,12,0.68);
-      font-size: 1.16rem;
+      font-size: 1.18rem;
       max-width: 720px;
+      color: rgba(15,23,42,.68);
       margin-bottom: 34px;
     }
 
@@ -130,100 +136,98 @@
       gap: 16px;
     }
 
-    .btn {
+    .glass-btn {
+      position: relative;
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      min-width: 150px;
       padding: 15px 24px;
       border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.68);
-      background: rgba(255,255,255,0.38);
-      backdrop-filter: blur(18px) saturate(170%);
-      color: #0b1020;
+      border: 1px solid rgba(255,255,255,.8);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.72), rgba(255,255,255,.22)),
+        rgba(255,255,255,.3);
+      backdrop-filter: blur(24px) saturate(180%);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.9),
+        inset 0 -14px 28px rgba(10,20,40,.12),
+        0 18px 42px rgba(15,23,42,.18);
       font-weight: 800;
-      box-shadow:
-        inset 0 1px 1px rgba(255,255,255,0.8),
-        inset 0 -12px 28px rgba(0,0,0,0.15),
-        0 18px 38px rgba(0,0,0,0.18);
-      transition: 0.3s ease;
-    }
-
-    .btn.primary {
-      background:
-        linear-gradient(135deg, rgba(34,211,238,0.85), rgba(139,92,246,0.85));
-      color: white;
-      text-shadow: 0 1px 8px rgba(0,0,0,0.35);
-    }
-
-    .btn:hover {
-      transform: translateY(-3px);
-      box-shadow:
-        inset 0 1px 1px rgba(255,255,255,0.9),
-        inset 0 -12px 30px rgba(0,0,0,0.2),
-        0 24px 50px rgba(0,0,0,0.24);
-    }
-
-    .liquid-panel {
-      position: relative;
+      transition: .35s ease;
       overflow: hidden;
-      border-radius: var(--radius);
-      border: 1px solid rgba(255,255,255,0.65);
+    }
+
+    .glass-btn.dark {
+      color: #fff;
       background:
-        linear-gradient(135deg, rgba(255,255,255,0.42), rgba(255,255,255,0.12)),
-        linear-gradient(135deg, rgba(15,23,42,0.88), rgba(15,23,42,0.54));
-      backdrop-filter: blur(28px) saturate(180%);
+        linear-gradient(180deg, rgba(25,28,38,.95), rgba(5,8,15,.82));
       box-shadow:
-        inset 0 1px 2px rgba(255,255,255,0.85),
-        inset 0 -28px 52px rgba(0,0,0,0.38),
-        0 28px 80px rgba(0,0,0,0.28);
+        inset 0 1px 0 rgba(255,255,255,.28),
+        inset 0 -14px 28px rgba(76,201,255,.22),
+        0 20px 48px rgba(0,0,0,.28);
+    }
+
+    .glass-btn:hover {
+      transform: translateY(-3px) scale(1.02);
     }
 
     .hero-visual {
+      position: relative;
       min-height: 540px;
-      padding: 38px;
+      border-radius: 46px;
+      padding: 36px;
       display: flex;
       align-items: end;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.72);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.42), rgba(255,255,255,.12)),
+        radial-gradient(circle at 30% 25%, rgba(76,201,255,.45), transparent 28%),
+        radial-gradient(circle at 76% 42%, rgba(255,79,216,.38), transparent 30%),
+        rgba(8,12,20,.72);
+      backdrop-filter: blur(28px) saturate(180%);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.75),
+        inset 0 -26px 58px rgba(76,201,255,.18),
+        0 34px 90px rgba(15,23,42,.28);
     }
 
     .hero-visual::before {
-      content: "";
-      position: absolute;
+      content:"";
+      position:absolute;
       inset: 12%;
-      border-radius: 28px;
+      border-radius: 30px;
       background:
-        linear-gradient(90deg, rgba(255,255,255,0.12) 1px, transparent 1px),
-        linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px);
-      background-size: 38px 38px;
-      opacity: 0.55;
+        linear-gradient(90deg, rgba(255,255,255,.12) 1px, transparent 1px),
+        linear-gradient(rgba(255,255,255,.10) 1px, transparent 1px);
+      background-size: 36px 36px;
+      opacity:.48;
     }
 
     .hero-visual::after {
-      content: "";
-      position: absolute;
-      width: 290px;
-      height: 120px;
-      right: 12%;
-      top: 14%;
-      border-radius: 999px;
-      background:
-        radial-gradient(circle at 25% 40%, rgba(34,211,238,0.75), transparent 35%),
-        radial-gradient(circle at 70% 45%, rgba(236,72,153,0.7), transparent 38%);
-      filter: blur(22px);
-      opacity: 0.85;
+      content:"";
+      position:absolute;
+      width:220px;
+      height:220px;
+      right:12%;
+      bottom:-40px;
+      background: radial-gradient(circle, rgba(255,79,216,.46), transparent 68%);
+      filter: blur(8px);
     }
 
     .visual-caption {
       position: relative;
       z-index: 2;
-      color: white;
+      color: #fff;
     }
 
     .visual-caption span {
-      color: #67e8f9;
-      letter-spacing: 0.14em;
+      color: var(--blue);
+      letter-spacing:.14em;
+      font-size:.82rem;
+      font-weight:900;
       text-transform: uppercase;
-      font-size: 0.82rem;
-      font-weight: 800;
     }
 
     .visual-caption h3 {
@@ -232,8 +236,8 @@
     }
 
     .visual-caption p {
-      color: rgba(255,255,255,0.75);
-      margin: 8px 0 0;
+      color: rgba(255,255,255,.72);
+      margin-top: 6px;
     }
 
     section {
@@ -249,15 +253,15 @@
     }
 
     .section-title h2 {
-      font-size: clamp(2rem, 4vw, 3.5rem);
-      letter-spacing: -0.055em;
-      color: #05070c;
+      font-size: clamp(2.1rem, 4vw, 3.7rem);
+      line-height: 1;
+      letter-spacing: -0.06em;
+      color: #030712;
     }
 
     .section-title p {
-      color: rgba(5,7,12,0.65);
-      max-width: 560px;
-      font-size: 1.03rem;
+      max-width: 570px;
+      color: rgba(15,23,42,.64);
     }
 
     .grid {
@@ -265,38 +269,425 @@
       gap: 24px;
     }
 
-    .grid-2 {
-      grid-template-columns: repeat(2, 1fr);
-    }
-
-    .grid-3 {
-      grid-template-columns: repeat(3, 1fr);
-    }
-
-    .grid-4 {
-      grid-template-columns: repeat(4, 1fr);
-    }
+    .grid-2 { grid-template-columns: repeat(2, 1fr); }
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .grid-4 { grid-template-columns: repeat(4, 1fr); }
 
     .card {
       position: relative;
-      overflow: hidden;
       border-radius: var(--radius);
-      padding: 32px;
+      padding: 30px;
+      border: 1px solid rgba(255,255,255,.75);
       background:
-        linear-gradient(135deg, rgba(255,255,255,0.46), rgba(255,255,255,0.14)),
-        rgba(5,7,12,0.62);
-      border: 1px solid rgba(255,255,255,0.58);
-      backdrop-filter: blur(24px) saturate(175%);
+        linear-gradient(180deg, rgba(255,255,255,.62), rgba(255,255,255,.24));
+      backdrop-filter: blur(26px) saturate(180%);
       box-shadow:
-        inset 0 1px 2px rgba(255,255,255,0.85),
-        inset 0 -22px 42px rgba(0,0,0,0.36),
-        0 24px 60px rgba(0,0,0,0.18);
-      color: white;
-      transition: 0.35s ease;
+        inset 0 1px 0 rgba(255,255,255,.85),
+        inset 0 -20px 44px rgba(15,23,42,.08),
+        0 22px 58px rgba(15,23,42,.14);
+      transition: .35s ease;
+      overflow: hidden;
     }
 
     .card::after {
-      content: "";
-      position: absolute;
-      inset: auto 16px 12px 16px;
-      height
+      content:"";
+      position:absolute;
+      left: 20px;
+      right: 20px;
+      bottom: 0;
+      height: 5px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--blue), var(--purple), var(--pink));
+      opacity:.58;
+      filter: blur(.4px);
+    }
+
+    .card:hover {
+      transform: translateY(-7px);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.95),
+        inset 0 -20px 44px rgba(76,201,255,.14),
+        0 30px 80px rgba(15,23,42,.22);
+    }
+
+    .tag {
+      display:inline-block;
+      padding: 7px 13px;
+      border-radius:999px;
+      color:#075985;
+      font-size:.78rem;
+      font-weight:800;
+      border:1px solid rgba(76,201,255,.5);
+      background: rgba(255,255,255,.36);
+      margin-bottom: 16px;
+    }
+
+    .card h3 {
+      font-size:1.45rem;
+      margin-bottom:10px;
+      color:#030712;
+    }
+
+    .card p, .card li {
+      color: rgba(15,23,42,.65);
+    }
+
+    .card ul {
+      padding-left: 20px;
+      margin-top: 10px;
+    }
+
+    .image-block,
+    .work-image {
+      height: 170px;
+      border-radius: 26px;
+      margin-bottom: 22px;
+      border: 1px solid rgba(255,255,255,.78);
+      background:
+        linear-gradient(to top, rgba(8,12,20,.78), rgba(255,255,255,.08)),
+        radial-gradient(circle at 30% 35%, rgba(76,201,255,.42), transparent 34%),
+        radial-gradient(circle at 78% 58%, rgba(255,79,216,.34), transparent 30%),
+        rgba(8,12,20,.72);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.44),
+        inset 0 -20px 40px rgba(76,201,255,.12),
+        0 16px 38px rgba(15,23,42,.16);
+      background-size: cover;
+      background-position: center;
+      overflow:hidden;
+      cursor:pointer;
+    }
+
+    .image-block.video {
+      background:
+        linear-gradient(to top, rgba(8,12,20,.82), rgba(255,255,255,.08)),
+        repeating-linear-gradient(90deg, rgba(255,255,255,.13) 0 2px, transparent 2px 24px),
+        radial-gradient(circle at 75% 44%, rgba(167,139,250,.48), transparent 36%);
+    }
+
+    .image-block.prompt {
+      background:
+        linear-gradient(to top, rgba(8,12,20,.82), rgba(255,255,255,.08)),
+        radial-gradient(circle at 25% 30%, rgba(255,214,107,.34), transparent 32%),
+        radial-gradient(circle at 75% 60%, rgba(76,201,255,.42), transparent 34%);
+    }
+
+    .flow {
+      display:grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap:14px;
+    }
+
+    .step {
+      min-height: 150px;
+      padding: 22px;
+      border-radius: 28px;
+      border: 1px solid rgba(255,255,255,.75);
+      background: linear-gradient(180deg, rgba(255,255,255,.62), rgba(255,255,255,.22));
+      backdrop-filter: blur(24px) saturate(180%);
+      box-shadow: inset 0 -18px 34px rgba(76,201,255,.08), 0 16px 38px rgba(15,23,42,.12);
+    }
+
+    .num {
+      color:#7c3aed;
+      font-weight:900;
+      font-size:.82rem;
+      margin-bottom: 12px;
+    }
+
+    .platform-card {
+      min-height: 198px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+    }
+
+    .arrow {
+      color:#7c3aed;
+      font-weight:900;
+      margin-top: 20px;
+    }
+
+    .tools {
+      border-radius: 44px;
+      padding: 48px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.52), rgba(255,255,255,.18));
+      border: 1px solid rgba(255,255,255,.75);
+      backdrop-filter: blur(26px) saturate(180%);
+      box-shadow: 0 24px 72px rgba(15,23,42,.14);
+    }
+
+    .prompt-grid {
+      display:grid;
+      grid-template-columns: repeat(7,1fr);
+      gap:12px;
+      margin-top:22px;
+    }
+
+    .prompt-chip {
+      border-radius: 22px;
+      padding: 18px 12px;
+      text-align:center;
+      border:1px solid rgba(255,255,255,.72);
+      background: rgba(255,255,255,.36);
+      color: rgba(15,23,42,.62);
+      box-shadow: inset 0 -12px 28px rgba(76,201,255,.07);
+    }
+
+    .prompt-chip strong {
+      display:block;
+      color:#030712;
+      margin-bottom:6px;
+    }
+
+    .placeholder {
+      padding: 34px;
+      border-radius: 28px;
+      background: rgba(255,255,255,.42);
+      border: 1px dashed rgba(15,23,42,.18);
+      color: rgba(15,23,42,.65);
+    }
+
+    footer {
+      padding: 50px 0;
+      text-align:center;
+      color: rgba(15,23,42,.55);
+    }
+
+    @media (max-width:1000px) {
+      .hero, .grid-2, .grid-3, .grid-4, .flow, .prompt-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero { padding: 76px 0 50px; }
+      .hero-visual { min-height: 360px; }
+      .section-title { display:block; }
+      .nav-links { display:none; }
+      .tools { padding: 30px; }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand">AI ART LEARNING STUDIO</div>
+      <nav class="nav-links">
+        <a href="#course">課程介紹</a>
+        <a href="#practice">創作流程</a>
+        <a href="#platforms">延伸平台</a>
+        <a href="#my-gallery">我的作品</a>
+        <a href="#student-gallery">學生作品</a>
+        <a href="#tools">AI工具教學</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero container">
+      <div>
+        <div class="eyebrow">Generative AI × Art Education</div>
+        <h1>AI藝術創作課程</h1>
+        <p>從想像、提示詞、圖像到影片，學習如何運用生成式 AI 建立自己的視覺語言，讓創意成為可被看見、可被敘事、可被發表的作品。</p>
+        <div class="hero-actions">
+          <a class="glass-btn dark" href="#course">開始探索課程</a>
+          <a class="glass-btn" href="#my-gallery">觀看作品展示</a>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="visual-caption">
+          <span>AI Art Classroom</span>
+          <h3>生成式AI藝術教室</h3>
+          <p>以影像、分鏡與提示詞建立完整創作流程。</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="course" class="container">
+      <div class="section-title">
+        <h2>01 — 課程介紹</h2>
+        <p>讓學生理解生成式 AI 可以如何應用於藝術創作，並學會用提示詞生成自己想要的圖像與影片。</p>
+      </div>
+
+      <div class="grid grid-3">
+        <article class="card">
+          <div class="image-block"></div>
+          <span class="tag">Image Generation</span>
+          <h3>AI 圖像生成</h3>
+          <p>學習角色設計、場景建構、風格控制與視覺敘事，將腦中的想法轉化為具體圖像。</p>
+        </article>
+
+        <article class="card">
+          <div class="image-block video"></div>
+          <span class="tag">Video Creation</span>
+          <h3>AI 影片生成</h3>
+          <p>從單張圖像延伸為動態影像，理解分鏡、運鏡、光影與情緒如何影響影片表現。</p>
+        </article>
+
+        <article class="card">
+          <div class="image-block prompt"></div>
+          <span class="tag">Prompt Design</span>
+          <h3>提示詞設計</h3>
+          <p>提示詞不是指令，而是一種創作語言。學生將學會描述主體、風格、構圖、光線與氛圍。</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="practice" class="container">
+      <div class="section-title">
+        <h2>02 — 創作流程</h2>
+        <p>本課程不只是使用 AI，而是設計一套完整的創作流程。</p>
+      </div>
+
+      <div class="flow">
+        <div class="step"><div class="num">STEP 01</div><h3>觀察</h3><p>從名畫、影像與生活經驗中找到視覺線索。</p></div>
+        <div class="step"><div class="num">STEP 02</div><h3>情緒</h3><p>將畫面轉化為情感、氣氛與敘事方向。</p></div>
+        <div class="step"><div class="num">STEP 03</div><h3>Prompt</h3><p>用結構化文字描述作品想法。</p></div>
+        <div class="step"><div class="num">STEP 04</div><h3>圖像</h3><p>生成符合主題與風格的視覺作品。</p></div>
+        <div class="step"><div class="num">STEP 05</div><h3>分鏡</h3><p>設計畫面、鏡頭、光影與節奏。</p></div>
+        <div class="step"><div class="num">STEP 06</div><h3>影片</h3><p>將靜態作品延伸為動態影像。</p></div>
+      </div>
+    </section>
+
+    <section id="platforms" class="container">
+      <div class="section-title">
+        <h2>03 — 延伸平台</h2>
+        <p>連結 AI 教學紀錄、AI 藝術創作與社群平台，建立完整的 AI 藝術教學入口。</p>
+      </div>
+
+      <div class="grid grid-4">
+        <a class="card platform-card" href="https://www.facebook.com/educationforfuture/" target="_blank">
+          <div>
+            <span class="tag">Teaching</span>
+            <h3>AI教學觀察所</h3>
+            <p>分享 AI 教學案例、課程設計與學生學習成果。</p>
+          </div>
+          <div class="arrow">前往 →</div>
+        </a>
+
+        <a class="card platform-card" href="#" target="_blank">
+          <div>
+            <span class="tag">Studio</span>
+            <h3>AI藝術創新實驗室</h3>
+            <p>展示 AI 藝術創作、實驗作品與跨媒材創作流程。</p>
+          </div>
+          <div class="arrow">前往 →</div>
+        </a>
+
+        <a class="card platform-card" href="https://www.facebook.com/tsengkuocheng" target="_blank">
+          <div>
+            <span class="tag">Facebook</span>
+            <h3>個人創作與教學紀錄</h3>
+            <p>分享 AI 藝術創作與教學歷程。</p>
+          </div>
+          <div class="arrow">前往 →</div>
+        </a>
+
+        <a class="card platform-card" href="#" target="_blank">
+          <div>
+            <span class="tag">Instagram</span>
+            <h3>Instagram</h3>
+            <p>展示圖像作品、創作片段與視覺實驗。</p>
+          </div>
+          <div class="arrow">前往 →</div>
+        </a>
+      </div>
+    </section>
+
+    <section id="my-gallery" class="container">
+      <div class="section-title">
+        <h2>04 — 我的 AI 藝術作品展示</h2>
+        <p>展示教師個人的 AI 藝術創作、系列作品與實驗成果。</p>
+      </div>
+
+      <div class="grid grid-3">
+        <article class="card">
+          <a href="https://youtu.be/Zadb_fesAZA" target="_blank" style="text-decoration:none; color:inherit;">
+            <div class="work-image" style="
+              background-image:
+              linear-gradient(to top, rgba(0,0,0,.68), transparent),
+              url('images/test.png');
+              position:relative;">
+              <div style="
+                position:absolute;
+                top:50%;
+                left:50%;
+                transform:translate(-50%,-50%);
+                font-size:44px;
+                color:white;
+                text-shadow:0 6px 20px rgba(0,0,0,.45);">▶</div>
+            </div>
+            <span class="tag">AI Video</span>
+            <h3>編織巨貓</h3>
+            <p>AI 生成的大型纖維藝術裝置想像，點擊卡片可觀看影片作品。</p>
+          </a>
+        </article>
+      </div>
+    </section>
+
+    <section id="student-gallery" class="container">
+      <div class="section-title">
+        <h2>05 — 學生作品展示</h2>
+        <p>之後可依照 AI 圖像生成、影片分鏡、Prompt 設計與作品集成果分類展示學生作品。</p>
+      </div>
+      <div class="placeholder">
+        學生作品尚未上傳。之後可將圖片放入 images/students/ 資料夾，再新增作品卡片。
+      </div>
+    </section>
+
+    <section id="tools" class="container">
+      <div class="tools">
+        <div class="section-title">
+          <h2>06 — AI 工具教學</h2>
+          <p>學生將學會如何從文字生成圖像，並進一步延伸為影片與作品集。</p>
+        </div>
+
+        <div class="grid grid-2">
+          <article class="card">
+            <span class="tag">Text to Image</span>
+            <h3>文字轉圖像</h3>
+            <ul>
+              <li>主體描述</li>
+              <li>風格與媒材</li>
+              <li>構圖與鏡頭</li>
+              <li>光影與氛圍</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <span class="tag">Image to Video</span>
+            <h3>圖像轉影片</h3>
+            <ul>
+              <li>分鏡設計</li>
+              <li>鏡頭運動</li>
+              <li>情緒節奏</li>
+              <li>影片輸出與發表</li>
+            </ul>
+          </article>
+        </div>
+
+        <article class="card" style="margin-top:30px;">
+          <span class="tag">Prompt Lab</span>
+          <h3>Prompt 提示詞教學</h3>
+          <p>提示詞不是單純下指令，而是一種創作語言。好的提示詞能幫助 AI 更接近你的想像，也能讓創作者更清楚自己的選擇。</p>
+
+          <div class="prompt-grid">
+            <div class="prompt-chip"><strong>主體</strong>人物、物件、場景</div>
+            <div class="prompt-chip"><strong>動作</strong>正在發生的事</div>
+            <div class="prompt-chip"><strong>場景</strong>時間、地點、環境</div>
+            <div class="prompt-chip"><strong>風格</strong>攝影、插畫、水墨</div>
+            <div class="prompt-chip"><strong>構圖</strong>近景、全景、角度</div>
+            <div class="prompt-chip"><strong>光影</strong>柔光、逆光、霓虹</div>
+            <div class="prompt-chip"><strong>氛圍</strong>寧靜、神秘、未來感</div>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">© 2026 AI Art Learning Studio｜Designed for AI Art Education</div>
+  </footer>
+</body>
+</html>
