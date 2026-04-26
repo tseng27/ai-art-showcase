@@ -115,20 +115,21 @@
       font-weight: 800;
     }
 
-    h1 {
-      font-size: clamp(3.6rem, 8vw, 7.6rem);
-      line-height: .9;
-      letter-spacing: -0.08em;
-      margin-bottom: 28px;
-      color: #030712;
-    }
+h1 {
+  font-size: clamp(3.6rem, 8vw, 7.6rem);
+  line-height: .9;
+  letter-spacing: -0.08em;
+  margin-bottom: 28px;
+  color: #111827;
+  text-shadow: 0 8px 30px rgba(255,255,255,0.35);
+}
 
-    .hero p {
-      font-size: 1.18rem;
-      max-width: 720px;
-      color: rgba(15,23,42,.68);
-      margin-bottom: 34px;
-    }
+.hero p {
+  font-size: 1.18rem;
+  max-width: 720px;
+  color: rgba(17,24,39,.72);
+  margin-bottom: 34px;
+}
 
     .hero-actions {
       display: flex;
@@ -172,26 +173,28 @@
       transform: translateY(-3px) scale(1.02);
     }
 
-    .hero-visual {
-      position: relative;
-      min-height: 540px;
-      border-radius: 46px;
-      padding: 36px;
-      display: flex;
-      align-items: end;
-      overflow: hidden;
-      border: 1px solid rgba(255,255,255,.72);
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.42), rgba(255,255,255,.12)),
-        radial-gradient(circle at 30% 25%, rgba(76,201,255,.45), transparent 28%),
-        radial-gradient(circle at 76% 42%, rgba(255,79,216,.38), transparent 30%),
-        rgba(8,12,20,.72);
-      backdrop-filter: blur(28px) saturate(180%);
-      box-shadow:
-        inset 0 1px 0 rgba(255,255,255,.75),
-        inset 0 -26px 58px rgba(76,201,255,.18),
-        0 34px 90px rgba(15,23,42,.28);
-    }
+.hero-visual {
+  position: relative;
+  min-height: 540px;
+  border-radius: 46px;
+  padding: 36px;
+  display: flex;
+  align-items: end;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.82);
+  background:
+    linear-gradient(to top, rgba(5,8,15,.72), rgba(255,255,255,.18)),
+    radial-gradient(circle at 30% 25%, rgba(76,201,255,.52), transparent 28%),
+    radial-gradient(circle at 75% 45%, rgba(255,79,216,.48), transparent 34%),
+    url('images/test.png');
+  background-size: cover;
+  background-position: center;
+  backdrop-filter: blur(32px) saturate(190%);
+  box-shadow:
+    inset 0 2px 0 rgba(255,255,255,.85),
+    inset 0 -28px 60px rgba(76,201,255,.22),
+    0 36px 100px rgba(15,23,42,.32);
+}
 
     .hero-visual::before {
       content:"";
@@ -230,15 +233,17 @@
       text-transform: uppercase;
     }
 
-    .visual-caption h3 {
-      font-size: 1.8rem;
-      margin-top: 10px;
-    }
+.visual-caption h3 {
+  font-size: 1.8rem;
+  margin-top: 10px;
+  color: #ffffff;
+  text-shadow: 0 4px 24px rgba(0,0,0,.45);
+}
 
-    .visual-caption p {
-      color: rgba(255,255,255,.72);
-      margin-top: 6px;
-    }
+.visual-caption p {
+  color: rgba(255,255,255,.82);
+  margin-top: 6px;
+}
 
     section {
       padding: 78px 0;
