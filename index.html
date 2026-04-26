@@ -1,433 +1,425 @@
 <!DOCTYPE html>
-<html lang="zh-Hant" class="scroll-smooth">
+<html lang="zh-Hant">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>藝術的力量與未來——當 AI 遇見藝術的無限可能</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/framer-motion@10/dist/framer-motion.umd.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <style>
-        body {
-            background-color: #000000;
-            color: #E0E0E0; /* Light gray for base text for better readability on black */
-            font-family: 'Inter', 'Noto Sans TC', sans-serif; /* Inter for English, Noto Sans TC for Chinese */
-        }
-        .tech-blue { /* Changed from tesla-red */
-            color: #00A9E0; /* Vibrant Tech Blue */
-        }
-        .bg-tech-blue { /* Changed from bg-tesla-red */
-            background-color: #00A9E0;
-        }
-        .border-tech-blue { /* Changed from border-tesla-red */
-            border-color: #00A9E0;
-        }
-        .bento-cell {
-            background-color: #1A1A1A; /* Darker gray for cells */
-            border-radius: 1rem; /* 16px */
-            padding: 1.5rem; /* 24px */
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
-            border: 1px solid #333; /* Subtle border for cells */
-        }
-        .bento-cell:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 169, 224, 0.1); /* Updated shadow color */
-        }
-        .highlight-text {
-            font-size: 3rem; /* 48px */
-            line-height: 1.1;
-        }
-        @media (min-width: 768px) {
-            .highlight-text {
-                font-size: 4.5rem; /* 72px */
-            }
-        }
-        .section-title-cn {
-            font-size: 2.5rem; /* 40px */
-            font-weight: 700;
-        }
-        .section-title-en {
-            font-size: 1rem; /* 16px */
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: #A0A0A0; /* Lighter gray for English subtitles */
-        }
-        .content-text {
-            font-size: 0.9rem; /* 14.4px */
-            line-height: 1.6;
-            color: #B0B0B0;
-        }
-        .keyword {
-            color: #00A9E0; /* Updated keyword color */
-            font-weight: 600;
-        }
-        /* Custom gradient for tech feel */
-        .tech-gradient-blue { /* Changed from tech-gradient-red */
-            background: linear-gradient(90deg, rgba(0,169,224,0.7) 0%, rgba(0,169,224,0.3) 50%, rgba(0,169,224,0) 100%);
-            height: 4px;
-            width: 50%;
-            margin-top: 0.5rem;
-        }
-        .icon-large {
-            font-size: 3rem; /* 48px */
-        }
-        /* Ensure Framer Motion is available */
-        script { display: block; }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI 藝術教學網站 | AI Art Learning Studio</title>
+  <style>
+    :root {
+      --bg: #0f1115;
+      --surface: rgba(255, 255, 255, 0.05);
+      --surface-strong: rgba(255, 255, 255, 0.08);
+      --text: #edf2ff;
+      --muted: #a9b5d6;
+      --line: rgba(160, 178, 230, 0.25);
+      --accent: #8ea7ff;
+      --accent-2: #67d8ff;
+      --shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body { margin: 0; padding: 0; }
+
+    body {
+      background:
+        radial-gradient(40rem 24rem at 15% -5%, rgba(120, 105, 255, 0.25), transparent 60%),
+        radial-gradient(34rem 22rem at 90% 8%, rgba(90, 170, 255, 0.2), transparent 60%),
+        var(--bg);
+      color: var(--text);
+      font-family: "Noto Sans TC", "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+      line-height: 1.72;
+      letter-spacing: 0.015em;
+      min-height: 100vh;
+    }
+
+    .container {
+      width: min(1120px, 92vw);
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      border-bottom: 1px solid rgba(164, 180, 234, 0.2);
+      background: rgba(15, 17, 21, 0.76);
+      backdrop-filter: blur(10px);
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+      gap: 1rem;
+    }
+
+    .brand {
+      font-weight: 700;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+    }
+
+    .lang-switch {
+      display: inline-flex;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      padding: 0.22rem;
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .lang-switch button {
+      border: 0;
+      background: transparent;
+      color: var(--muted);
+      padding: 0.38rem 0.85rem;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .lang-switch button.active {
+      color: #0f1115;
+      background: linear-gradient(120deg, var(--accent), var(--accent-2));
+      font-weight: 700;
+    }
+
+    main { padding-bottom: 2.6rem; }
+
+    .hero {
+      text-align: center;
+      padding: 7rem 0 4.5rem;
+      position: relative;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 18%;
+      width: min(40rem, 78vw);
+      height: 14rem;
+      border-radius: 999px;
+      background: radial-gradient(circle, rgba(142, 167, 255, 0.35), rgba(142, 167, 255, 0));
+      filter: blur(12px);
+      z-index: -1;
+    }
+
+    .eyebrow {
+      color: var(--accent-2);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      margin-bottom: 1rem;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2rem, 6vw, 4rem);
+      line-height: 1.16;
+      letter-spacing: 0.03em;
+      text-wrap: balance;
+    }
+
+    .subtitle {
+      margin: 1.3rem auto 0;
+      max-width: 50rem;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .section-card {
+      margin: 1.2rem 0;
+      padding: 1.5rem;
+      border-radius: 20px;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+      transition: transform 0.28s ease, border-color 0.28s ease, background 0.28s ease;
+    }
+
+    .section-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(170, 190, 245, 0.45);
+      background: var(--surface-strong);
+    }
+
+    .section-head {
+      display: flex;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-head h2 {
+      margin: 0;
+      font-size: 1.52rem;
+      letter-spacing: 0.02em;
+    }
+
+    .section-en {
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      font-size: 0.76rem;
+    }
+
+    .section-intro {
+      margin: 0.45rem 0 0;
+      color: #d5dffd;
+    }
+
+    .entry-card {
+      margin-top: 1rem;
+      padding: 1.2rem;
+      border: 1px solid rgba(162, 182, 240, 0.32);
+      border-radius: 16px;
+      background:
+        linear-gradient(130deg, rgba(142, 167, 255, 0.13), rgba(103, 216, 255, 0.08)),
+        rgba(255, 255, 255, 0.03);
+    }
+
+    .entry-title {
+      font-size: 1.02rem;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+      letter-spacing: 0.02em;
+    }
+
+    .grid {
+      display: grid;
+      gap: 1rem;
+      margin-top: 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+
+    .card {
+      border: 1px solid rgba(170, 188, 242, 0.28);
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.04);
+      padding: 1rem;
+      transition: transform 0.24s ease, border-color 0.24s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(180, 199, 255, 0.5);
+    }
+
+    .label {
+      display: inline-block;
+      padding: 0.14rem 0.62rem;
+      border-radius: 999px;
+      border: 1px solid rgba(142, 167, 255, 0.6);
+      background: rgba(142, 167, 255, 0.12);
+      color: #d6e0ff;
+      font-size: 0.74rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.5rem;
+    }
+
+    ul {
+      margin: 0.75rem 0 0;
+      padding-left: 1.1rem;
+    }
+
+    li { color: #dbe5ff; }
+
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.88rem;
+      letter-spacing: 0.04em;
+      padding: 1.3rem 0 2.1rem;
+    }
+
+    @media (max-width: 760px) {
+      .hero { padding: 5.8rem 0 3.3rem; }
+      .section-card { padding: 1.15rem; border-radius: 16px; }
+      .section-head h2 { font-size: 1.28rem; }
+      .subtitle { font-size: 0.97rem; }
+    }
+  </style>
 </head>
 <body>
+  <header>
+    <div class="container nav">
+      <div class="brand" data-i18n="brand">AI 藝術學院</div>
+      <div class="lang-switch" aria-label="Language switch">
+        <button id="zhBtn" class="active">中文</button>
+        <button id="enBtn">EN</button>
+      </div>
+    </div>
+  </header>
 
-    <div id="app" class="overflow-x-hidden">
+  <main class="container">
+    <section class="hero">
+      <div class="eyebrow" data-i18n="heroEyebrow">AI ART EDUCATION STUDIO</div>
+      <h1 data-i18n="heroTitle">用 AI 開啟藝術創作的新可能</h1>
+      <p class="subtitle" data-i18n="heroSubtitle">為高中美術課、AI藝術創作課程與學生作品展示打造的專業教學網站。</p>
+    </section>
 
-        <motion.section
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1 }}
-            class="min-h-screen flex flex-col justify-center items-center text-center p-6 md:p-12 relative"
-        >
-            <div class="absolute inset-0 opacity-10 tech-gradient-blue" style="background: radial-gradient(circle, rgba(0,169,224,0.15) 0%, rgba(0,0,0,0) 60%); z-index: -1;"></div>
-            <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold text-white leading-tight">
-                藝術的<span class="tech-blue">力量</span>與<span class="tech-blue">未來</span>
-            </h1>
-            <p class="text-xl md:text-3xl text-neutral-300 mt-4 mb-8">
-                當 <span class="font-bold tech-blue">AI</span> 遇見藝術的無限可能
-            </p>
-            <p class="text-sm md:text-base text-neutral-400 uppercase tracking-widest">The Power and Future of Art - When AI Meets Art's Infinite Possibilities</p>
-            <motion.div 
-                animate={{ y: [0, -10, 0] }}
-                transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-                class="mt-16 text-3xl tech-blue"
-            >
-                <i class="fas fa-chevron-down"></i>
-            </motion.div>
-        </motion.section>
+    <section class="section-card">
+      <div class="section-head">
+        <h2 data-i18n="introTitle">1. 課程介紹</h2>
+        <span class="section-en" data-i18n="introEn">Course Gateway</span>
+      </div>
+      <p class="section-intro" data-i18n="introText">從基礎到實作，帶你理解生成式 AI、提示詞設計、風格控制與作品評估。</p>
+      <div class="entry-card">
+        <div class="entry-title" data-i18n="entryTitle">AI 藝術創作課程入口</div>
+        <div data-i18n="entryText">依照學習階段進入課程：認識工具、建立創作語言、完成個人專題與展出。</div>
+      </div>
+      <div class="grid">
+        <article class="card">
+          <span class="label" data-i18n="introCard1Label">入門</span>
+          <div data-i18n="introCard1">AI 藝術概念、工具環境設定、基本提示詞。</div>
+        </article>
+        <article class="card">
+          <span class="label" data-i18n="introCard2Label">進階</span>
+          <div data-i18n="introCard2">角色一致性、風格參考、系列作品製作流程。</div>
+        </article>
+        <article class="card">
+          <span class="label" data-i18n="introCard3Label">專題</span>
+          <div data-i18n="introCard3">個人專題發表，建立作品集與展覽頁面。</div>
+        </article>
+      </div>
+    </section>
 
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-24 md:space-y-32 py-16">
-          
-            <motion.section class="space-y-8" variants={fadeIn} initial="initial" whileInView="whileInView" viewport={{ once: true, amount: 0.1 }}>
-                <div class="text-center">
-                    <h2 class="section-title-cn">序言 <span class="tech-blue">科技與藝術</span>的邂逅</h2>
-                    <p class="section-title-en mt-1">Preface: The Encounter of Technology and Art</p>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <motion.div class="bento-cell md:col-span-2 lg:col-span-1" variants={fadeInFromBottom}>
-                        <i class="fas fa-handshake tech-blue icon-large mb-4 self-start"></i>
-                        <h3 class="text-2xl font-semibold text-white mb-2">文明的雙軌</h3>
-                        <p class="content-text">藝術與科技，如文明長河中的兩股巨流，始終<span class="keyword">相互輝映，共同演進</span>。科技拓展藝術疆界，藝術啟迪科技創新。</p>
-                        <div class="tech-gradient-blue mt-auto"></div>
-                    </motion.div>
-                    <motion.div class="bento-cell lg:col-span-2" variants={fadeInFromBottom}>
-                        <i class="fas fa-film tech-blue icon-large mb-4 self-start"></i>
-                        <h3 class="text-2xl font-semibold text-white mb-2">科幻的預言</h3>
-                        <p class="content-text">從《星際大戰》的忠誠機器人到《鋼鐵人》的創新助手，電影早已預示AI融入生活，包括<span class="keyword">藝術創作</span>。AI不再是幻想，而是現實。</p>
-                        <div class="tech-gradient-blue mt-auto"></div>
-                    </motion.div>
-                    <motion.div class="bento-cell md:col-span-full text-center py-12" variants={fadeInFromBottom}>
-                         <p class="highlight-text font-bold tech-blue">AI</p>
-                         <p class="text-2xl text-white mt-2">挑戰「原創」與「藝術家」的定義</p>
-                         <p class="section-title-en mt-1">Challenging Definitions of "Originality" & "Artist"</p>
-                    </motion.div>
-                </div>
-            </motion.section>
+    <section class="section-card">
+      <div class="section-head">
+        <h2 data-i18n="galleryTitle">2. 學生作品展示</h2>
+        <span class="section-en" data-i18n="galleryEn">Student Showcase</span>
+      </div>
+      <p class="section-intro" data-i18n="galleryText">精選學生創作，呈現不同主題與技法：插畫、海報、概念設計與敘事影像。</p>
+      <div class="grid">
+        <article class="card"><strong data-i18n="work1Title">光影城市</strong><div data-i18n="work1Desc">主題：未來都市 / 技法：風格混合</div></article>
+        <article class="card"><strong data-i18n="work2Title">自然機械</strong><div data-i18n="work2Desc">主題：生態想像 / 技法：材質細節強化</div></article>
+        <article class="card"><strong data-i18n="work3Title">記憶拼貼</strong><div data-i18n="work3Desc">主題：個人故事 / 技法：敘事型提示詞</div></article>
+      </div>
+    </section>
 
-            <motion.section class="space-y-8" variants={fadeIn} initial="initial" whileInView="whileInView" viewport={{ once: true, amount: 0.1 }}>
-                <div class="text-center">
-                    <h2 class="section-title-cn"><span class="tech-blue">第一部分</span> 回顧歷史</h2>
-                    <p class="section-title-en mt-1">Part 1: A Look Back - The Evolution of Art and Technology</p>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <motion.div class="bento-cell" variants={fadeInFromBottom}>
-                        <i class="fas fa-palette tech-blue icon-large mb-4 self-start"></i>
-                        <h3 class="text-2xl font-semibold text-white mb-2">史前藝術與埃及壁畫</h3>
-                        <p class="content-text">拉斯科洞窟壁畫 (<span class="keyword">17,000年前</span>) 與古埃及壁畫，展現早期人類利用「工具與技術」表達內心與社會。</p>
-                        <div class="tech-gradient-blue mt-auto"></div>
-                    </motion.div>
-                    <motion.div class="bento-cell" variants={fadeInFromBottom}>
-                        <i class="fas fa-camera-retro tech-blue icon-large mb-4 self-start"></i>
-                        <h3 class="text-2xl font-semibold text-white mb-2">透視、暗箱、透鏡</h3>
-                        <p class="content-text">14-16世紀，透視法與光學工具 (<span class="keyword">暗箱、透鏡</span>) 提升現實再現能力。霍克尼指出1420年後玻璃透鏡的影響。</p>
-                        <div class="tech-gradient-blue mt-auto"></div>
-                    </motion.div>
-                    <motion.div class="bento-cell text-center items-center" variants={fadeInFromBottom}>
-                        <p class="text-6xl md:text-8xl font-bold tech-blue">1839</p>
-                        <p class="text-xl text-white mt-2">攝影術誕生</p>
-                        <p class="content-text mt-1">挑戰繪畫，促其探索新可能 (印象派)。</p>
-                    </motion.div>
-                    <motion.div class="bento-cell md:col-span-2 lg:col-span-3" variants={fadeInFromBottom}>
-                        <i class="fas fa-industry tech-blue icon-large mb-4 self-start"></i>
-                        <h3 class="text-2xl font-semibold text-white mb-2">藝術與科技的工業革命進程</h3>
-                        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 mt-4">
-            <div class="text-center p-2 border border-neutral-700 rounded-lg">
-                <p class="font-bold text-lg tech-blue">1.0</p>
-                <p class="text-xs text-neutral-400 mt-1">機械化<br/>水力<br/>蒸氣動力</p>
-                <p class="text-xs content-text mt-1">傳統技法<br/>手繪油畫</p>
-                <p class="text-xs text-neutral-500 mt-1">1760s (藝術 ~1400-1800)</p>
-            </div>
-            <div class="text-center p-2 border border-neutral-700 rounded-lg">
-                <p class="font-bold text-lg tech-blue">2.0</p>
-                <p class="text-xs text-neutral-400 mt-1">大量生產<br/>電力</p>
-                <p class="text-xs content-text mt-1">攝影<br/>印刷術</p>
-                <p class="text-xs text-neutral-500 mt-1">1870s (藝術 ~1800-1950)</p>
-            </div>
-            <div class="text-center p-2 border border-neutral-700 rounded-lg">
-                <p class="font-bold text-lg tech-blue">3.0</p>
-                <p class="text-xs text-neutral-400 mt-1">自動化<br/>電腦化<br/>機器人</p>
-                <p class="text-xs content-text mt-1">裝置<br/>互動藝術</p>
-                <p class="text-xs text-neutral-500 mt-1">1969s (藝術 ~1950-1990)</p>
-            </div>
-            <div class="text-center p-2 border border-neutral-700 rounded-lg">
-                <p class="font-bold text-lg tech-blue">4.0</p>
-                <p class="text-xs text-neutral-400 mt-1">網際網路<br/>數據分析<br/>連結性</p>
-                <p class="text-xs content-text mt-1">數位藝術<br/>VR互動藝術</p>
-                <p class="text-xs text-neutral-500 mt-1">2000s (藝術 ~1990-2020)</p>
-            </div>
-            <div class="text-center p-2 border border-neutral-700 rounded-lg col-span-2 sm:col-span-1 lg:col-span-1">
-                <p class="font-bold text-lg tech-blue">5.0</p>
-                <p class="text-xs text-neutral-400 mt-1">大規模客製化<br/>人機協作</p>
-                <p class="text-xs content-text mt-1">生成藝術<br/>AI藝術</p>
-                <p class="text-xs text-neutral-500 mt-1">2020s (藝術 ~2020-)</p>
-           
-        </div>
-                        </div>
-                        <div class="tech-gradient-blue mt-auto"></div>
-                    </motion.div>
-                </div>
-            </motion.section>
+    <section class="section-card">
+      <div class="section-head">
+        <h2 data-i18n="toolsTitle">3. AI 工具教學</h2>
+        <span class="section-en" data-i18n="toolsEn">Tool Training</span>
+      </div>
+      <p class="section-intro" data-i18n="toolsText">以步驟化教學介紹常見 AI 藝術工具，並搭配案例練習。</p>
+      <ul>
+        <li data-i18n="toolItem1">文字轉圖像（Text-to-Image）基本流程</li>
+        <li data-i18n="toolItem2">提示詞模板與迭代技巧</li>
+        <li data-i18n="toolItem3">圖像後製與作品輸出格式</li>
+      </ul>
+    </section>
 
-            <motion.section class="space-y-8" variants={fadeIn} initial="initial" whileInView="whileInView" viewport={{ once: true, amount: 0.1 }}>
-                <div class="text-center">
-                    <h2 class="section-title-cn"><span class="tech-blue">第二部分</span> 數位藝術的萌芽</h2>
-                    <p class="section-title-en mt-1">Part 2: The Dawn and Development of Digital Art</p>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <motion.div class="bento-cell" variants={fadeInFromBottom}>
-                        <i class="fas fa-brain tech-blue icon-large mb-4 self-start"></i>
-                        <h3 class="text-2xl font-semibold text-white mb-2">圖靈測試</h3>
-                        <p class="content-text">艾倫·圖靈對機器智能的探討，為電腦藝術與AI藝術奠定<span class="keyword">理論基礎</span>。</p>
-                        <div class="tech-gradient-blue mt-auto"></div>
-                    </motion.div>
-                    <motion.div class="bento-cell lg:col-span-2" variants={fadeInFromBottom}>
-                        <i class="fas fa-calculator tech-blue icon-large mb-4 self-start"></i>
-                        <h3 class="text-2xl font-semibold text-white mb-2">算法藝術早期實驗</h3>
-                        <p class="content-text">Frieder Nake (1965)《Hommage à Paul Klee》、A. Michael Noll (1964)《Computer Composition With Lines》將數學算法與藝術結合，挑戰傳統觀念。</p>
-                        <div class="tech-gradient-blue mt-auto"></div>
-                    </motion.div>
-                    <motion.div class="bento-cell text-center items-center" variants={fadeInFromBottom}>
-                        <p class="text-6xl md:text-8xl font-bold tech-blue">AARON</p>
-                        <p class="text-xl text-white mt-2">自主創作繪畫程式</p>
-                        <p class="content-text mt-1">Harold Cohen 開發，標誌AI藝術早期應用。</p>
-                    </motion.div>
-                    <motion.div class="bento-cell" variants={fadeInFromBottom}>
-                        <i class="fas fa-desktop tech-blue icon-large mb-4 self-start"></i>
-                        <h3 class="text-2xl font-semibold text-white mb-2">數位工具普及</h3>
-                        <p class="content-text">1984年 MacPaint 推出，數位藝術工具普及，藝術家開始廣泛使用。</p>
-                        <div class="tech-gradient-blue mt-auto"></div>
-                    </motion.div>
-                    <motion.div class="bento-cell" variants={fadeInFromBottom}>
-                        <p class="text-4xl font-bold tech-blue mb-2">1985</p>
-                        <h3 class="text-2xl font-semibold text-white mb-2">「數位藝術」</h3>
-                        <p class="content-text">術語廣泛使用，標誌數位媒介在藝術創作的正式地位。</p>
-                        <div class="tech-gradient-blue mt-auto"></div>
-                    </motion.div>
-                </div>
-            </motion.section>
+    <section class="section-card">
+      <div class="section-head">
+        <h2 data-i18n="bilingualTitle">4. 雙語介面</h2>
+        <span class="section-en" data-i18n="bilingualEn">Bilingual UI</span>
+      </div>
+      <p class="section-intro" data-i18n="bilingualText">支援中文 / English 一鍵切換，協助跨語言學習與國際展示。</p>
+    </section>
+  </main>
 
-            <motion.section class="space-y-8" variants={fadeIn} initial="initial" whileInView="whileInView" viewport={{ once: true, amount: 0.1 }}>
-                <div class="text-center">
-                    <h2 class="section-title-cn"><span class="tech-blue">第三部分</span> 網路與互動藝術</h2>
-                    <p class="section-title-en mt-1">Part 3: The Rise of Internet and Interactive Art</p>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <motion.div class="bento-cell" variants={fadeInFromBottom}>
-                        <i class="fas fa-globe tech-blue icon-large mb-4 self-start"></i>
-                        <h3 class="text-2xl font-semibold text-white mb-2">網路藝術 (Net Art)</h3>
-                        <p class="content-text">1990年代，藝術家利用網際網路創作互動性強、參與度高的作品。如 Olia Lialina《My Boyfriend Came Back from the War》(1996)。</p>
-                        <div class="tech-gradient-blue mt-auto"></div>
-                    </motion.div>
-                    <motion.div class="bento-cell" variants={fadeInFromBottom}>
-                        <i class="fas fa-vr-cardboard tech-blue icon-large mb-4 self-start"></i>
-                        <h3 class="text-2xl font-semibold text-white mb-2">互動與沉浸式藝術</h3>
-                        <p class="content-text">2000年代，感應器、投影、互動軟體進步，催生複雜、多感官體驗。Teamlab 為代表。</p>
-                        <div class="tech-gradient-blue mt-auto"></div>
-                    </motion.div>
-                </div>
-            </motion.section>
+  <footer data-i18n="footer">© 2026 AI Art Learning Studio</footer>
 
-            <motion.section class="space-y-8" variants={fadeIn} initial="initial" whileInView="whileInView" viewport={{ once: true, amount: 0.1 }}>
-                <div class="text-center">
-                    <h2 class="section-title-cn"><span class="tech-blue">第四部分</span> AI藝術的崛起</h2>
-                    <p class="section-title-en mt-1">Part 4: The Rise and Impact of AI Art</p>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <motion.div class="bento-cell lg:col-span-2" variants={fadeInFromBottom}>
-                        <i class="fas fa-robot tech-blue icon-large mb-4 self-start"></i>
-                        <h3 class="text-2xl font-semibold text-white mb-2">「下一個林布蘭」 (2016)</h3>
-                        <p class="content-text">科技分析林布蘭畫作特徵，3D列印模仿筆觸，產出<span class="keyword">全新「類林布蘭」作品</span>，引發風格、原創性討論。</p>
-                        <div class="tech-gradient-blue mt-auto"></div>
-                    </motion.div>
-                     <motion.div class="bento-cell text-center items-center" variants={fadeInFromBottom}>
-                        <p class="text-5xl md:text-6xl font-bold tech-blue">$43.2萬</p>
-                        <p class="text-lg text-white mt-2">《貝拉米畫像》拍賣價 (2018)</p>
-                        <p class="content-text mt-1">AI繪製，印有生成公式。</p>
-                    </motion.div>
-                    <motion.div class="bento-cell" variants={fadeInFromBottom}>
-                        <h3 class="text-xl font-semibold text-white mb-2">AI Gemini (2018)</h3>
-                        <p class="content-text">黃宏達創立全球首位AI水墨畫家，探索水墨新可能，開啟「TECH-INK」時代。</p>
-                        <div class="tech-gradient-blue mt-auto"></div>
-                    </motion.div>
-                    <motion.div class="bento-cell" variants={fadeInFromBottom}>
-                        <h3 class="text-xl font-semibold text-white mb-2">Ai-Da (2019 onwards)</h3>
-                        <p class="content-text">人形機器人藝術家。其作品《A.I. God. Portrait of Alan Turing》於2024年以<span class="keyword">132萬美元</span>成交。</p>
-                        <div class="tech-gradient-blue mt-auto"></div>
-                    </motion.div>
-                    <motion.div class="bento-cell md:col-span-2 lg:col-span-1" variants={fadeInFromBottom}>
-                         <i class="fas fa-gavel tech-blue icon-large mb-4 self-start"></i>
-                        <h3 class="text-2xl font-semibold text-white mb-2">版權與倫理爭議</h3>
-                        <p class="content-text">《太空歌劇院》AI作品遭著作權局駁回 (2022)。Boris Eldagsen 拒領攝影獎 (2023)，主張AI圖像應有獨立獎項。</p>
-                        <div class="tech-gradient-blue mt-auto"></div>
-                    </motion.div>
-                    <motion.div class="bento-cell md:col-span-full text-center py-12" variants={fadeInFromBottom}>
-                         <p class="highlight-text font-bold tech-blue">創作者?</p>
-                         <p class="text-2xl text-white mt-2">當AI也能創作，我們如何重新定義「創作者」？</p>
-                         <p class="section-title-en mt-1">Redefining "Creator" in the Age of AI</p>
-                    </motion.div>
-                </div>
-            </motion.section>
+  <script>
+    const i18n = {
+      zh: {
+        brand: "AI 藝術學院",
+        heroEyebrow: "AI ART EDUCATION STUDIO",
+        heroTitle: "用 AI 開啟藝術創作的新可能",
+        heroSubtitle: "為高中美術課、AI藝術創作課程與學生作品展示打造的專業教學網站。",
+        introTitle: "1. 課程介紹",
+        introEn: "Course Gateway",
+        introText: "從基礎到實作，帶你理解生成式 AI、提示詞設計、風格控制與作品評估。",
+        entryTitle: "AI 藝術創作課程入口",
+        entryText: "依照學習階段進入課程：認識工具、建立創作語言、完成個人專題與展出。",
+        introCard1Label: "入門",
+        introCard1: "AI 藝術概念、工具環境設定、基本提示詞。",
+        introCard2Label: "進階",
+        introCard2: "角色一致性、風格參考、系列作品製作流程。",
+        introCard3Label: "專題",
+        introCard3: "個人專題發表，建立作品集與展覽頁面。",
+        galleryTitle: "2. 學生作品展示",
+        galleryEn: "Student Showcase",
+        galleryText: "精選學生創作，呈現不同主題與技法：插畫、海報、概念設計與敘事影像。",
+        work1Title: "光影城市",
+        work1Desc: "主題：未來都市 / 技法：風格混合",
+        work2Title: "自然機械",
+        work2Desc: "主題：生態想像 / 技法：材質細節強化",
+        work3Title: "記憶拼貼",
+        work3Desc: "主題：個人故事 / 技法：敘事型提示詞",
+        toolsTitle: "3. AI 工具教學",
+        toolsEn: "Tool Training",
+        toolsText: "以步驟化教學介紹常見 AI 藝術工具，並搭配案例練習。",
+        toolItem1: "文字轉圖像（Text-to-Image）基本流程",
+        toolItem2: "提示詞模板與迭代技巧",
+        toolItem3: "圖像後製與作品輸出格式",
+        bilingualTitle: "4. 雙語介面",
+        bilingualEn: "Bilingual UI",
+        bilingualText: "支援中文 / English 一鍵切換，協助跨語言學習與國際展示。",
+        footer: "© 2026 AI Art Learning Studio"
+      },
+      en: {
+        brand: "AI Art Academy",
+        heroEyebrow: "AI ART EDUCATION STUDIO",
+        heroTitle: "Create New Artistic Possibilities with AI",
+        heroSubtitle: "A professional platform for high school art classes, AI art creation courses, and student showcases.",
+        introTitle: "1. Course Introduction",
+        introEn: "Course Gateway",
+        introText: "Learn generative AI, prompt design, style control, and project evaluation from basics to practice.",
+        entryTitle: "AI Art Creation Entry Point",
+        entryText: "Start by stage: understand tools, build visual language, complete your capstone, and prepare for exhibition.",
+        introCard1Label: "Foundation",
+        introCard1: "Core AI art concepts, tool setup, and starter prompts.",
+        introCard2Label: "Advanced",
+        introCard2: "Character consistency, style references, and series workflow.",
+        introCard3Label: "Capstone",
+        introCard3: "Present your personal project and build a portfolio page.",
+        galleryTitle: "2. Student Works Gallery",
+        galleryEn: "Student Showcase",
+        galleryText: "Featured student projects across illustration, posters, concept art, and visual storytelling.",
+        work1Title: "City of Light",
+        work1Desc: "Theme: Future city / Technique: Style blending",
+        work2Title: "Organic Machines",
+        work2Desc: "Theme: Eco imagination / Technique: Material detailing",
+        work3Title: "Memory Collage",
+        work3Desc: "Theme: Personal story / Technique: Narrative prompting",
+        toolsTitle: "3. AI Tool Tutorials",
+        toolsEn: "Tool Training",
+        toolsText: "Step-by-step lessons for common AI art tools with practical exercises.",
+        toolItem1: "Text-to-image workflow essentials",
+        toolItem2: "Prompt templates and iteration techniques",
+        toolItem3: "Post-editing and export formats",
+        bilingualTitle: "4. Bilingual Interface",
+        bilingualEn: "Bilingual UI",
+        bilingualText: "Switch between Chinese and English to support global learning and showcases.",
+        footer: "© 2026 AI Art Learning Studio"
+      }
+    };
 
-            <motion.section class="space-y-8" variants={fadeIn} initial="initial" whileInView="whileInView" viewport={{ once: true, amount: 0.1 }}>
-                <div class="text-center">
-                    <h2 class="section-title-cn"><span class="tech-blue">第五部分</span> AI改變創作方式</h2>
-                    <p class="section-title-en mt-1">Part 5: How AI is Changing Creation Methods and Future Trends</p>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <motion.div class="bento-cell" variants={fadeInFromBottom}>
-                        <i class="fas fa-cogs tech-blue icon-large mb-4 self-start"></i>
-                        <h3 class="text-2xl font-semibold text-white mb-2">重塑工作流程</h3>
-                        <p class="content-text">AI提升效率，輔助創意。如亞馬遜倉儲機器人、無人駕駛，預示<span class="keyword">人機協作</span>未來。</p>
-                        <div class="tech-gradient-blue mt-auto"></div>
-                    </motion.div>
-                    <motion.div class="bento-cell lg:col-span-2" variants={fadeInFromBottom}>
-                        <i class="fas fa-drafting-compass tech-blue icon-large mb-4 self-start"></i>
-                        <h3 class="text-2xl font-semibold text-white mb-2">設計領域AI應用</h3>
-                        <p class="content-text">Vizcom草圖轉渲染圖、自動生成設計提案、革新動畫遊戲製作 (AI輔助3D世界)、優化3D建模與製造、探索沉浸式體驗、文生視訊 (Sora)。</p>
-                        <div class="tech-gradient-blue mt-auto"></div>
-                    </motion.div>
-                    <motion.div class="bento-cell md:col-span-2 lg:col-span-1" variants={fadeInFromBottom}>
-                        <i class="fas fa-lightbulb tech-blue icon-large mb-4 self-start"></i>
-                        <h3 class="text-2xl font-semibold text-white mb-2">創意核心轉變</h3>
-                        <p class="content-text">從<span class="keyword">技藝到理念</span>。AI降低技術門檻，藝術家更專注於創意發想、概念獨特性、AI工具運用。</p>
-                        <div class="tech-gradient-blue mt-auto"></div>
-                    </motion.div>
-                    <motion.div class="bento-cell lg:col-span-2" variants={fadeInFromBottom}>
-                        <i class="fas fa-atom tech-blue icon-large mb-4 self-start"></i>
-                        <h3 class="text-2xl font-semibold text-white mb-2">整合AI的當代藝術實踐</h3>
-                        <p class="content-text">跨媒介與虛實整合 (雕塑、數位、元宇宙)、風格演繹與創新 (學習風格後生成新作)、數據作為創作媒材 (腦波、城市圖像轉化為藝術)。</p>
-                        <div class="tech-gradient-blue mt-auto"></div>
-                    </motion.div>
-                </div>
-            </motion.section>
+    const zhBtn = document.getElementById("zhBtn");
+    const enBtn = document.getElementById("enBtn");
 
-            <motion.section class="space-y-8" variants={fadeIn} initial="initial" whileInView="whileInView" viewport={{ once: true, amount: 0.1 }}>
-                <div class="text-center">
-                    <h2 class="section-title-cn"><span class="tech-blue">第六部分</span> AI藝術實踐</h2>
-                    <p class="section-title-en mt-1">Part 6: AI Art Practice and Personal Creation</p>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <motion.div class="bento-cell md:col-span-2 lg:col-span-3" variants={fadeInFromBottom}>
-                        <i class="fas fa-magic tech-blue icon-large mb-4 self-start"></i>
-                        <h3 class="text-2xl font-semibold text-white mb-2">AI生圖流程：從概念到圖像</h3>
-                        <p class="content-text">1. 構思與<span class="keyword">提示詞 (Prompt)</span> 撰寫 → 2. AI工具生成 → 3. 迭代與優化提示詞 → 4. 生成與調整 → 5. 後續處理與輸出。創作者智慧與AI模型互動協作。</p>
-                        <div class="tech-gradient-blue mt-auto"></div>
-                    </motion.div>
-                    <motion.div class="bento-cell" variants={fadeInFromBottom}>
-                        <h3 class="text-xl font-semibold text-white mb-2">個人創作經驗 (Midjourney)</h3>
-                        <p class="content-text">提示詞表達、AI模型迭代影響圖像風格。ChatGPT輔助概念，Tripo3D建模，3D列印實體化，<span class="keyword">AI加速跨領域創作</span>。</p>
-                        <div class="tech-gradient-blue mt-auto"></div>
-                    </motion.div>
-                    <motion.div class="bento-cell" variants={fadeInFromBottom}>
-                        <h3 class="text-xl font-semibold text-white mb-2">傳統與現代對話</h3>
-                        <p class="content-text">曾國正老師「墨‧黑」個展，探索傳統媒材。AI可作新媒介，與傳統技法結合，拓展藝術可能。</p>
-                        <div class="tech-gradient-blue mt-auto"></div>
-                    </motion.div>
-                    <motion.div class="bento-cell" variants={fadeInFromBottom}>
-                        <i class="fas fa-chalkboard-teacher tech-blue icon-large mb-4 self-start"></i>
-                        <h3 class="text-2xl font-semibold text-white mb-2">AI藝術工作坊</h3>
-                        <p class="content-text">教學、練習、引導創作思維，助更多人掌握AI藝術工具，激發創意。</p>
-                        <div class="tech-gradient-blue mt-auto"></div>
-                    </motion.div>
-                </div>
-            </motion.section>
+    function setLanguage(lang) {
+      document.documentElement.lang = lang === "zh" ? "zh-Hant" : "en";
+      document.querySelectorAll("[data-i18n]").forEach((el) => {
+        const key = el.dataset.i18n;
+        if (i18n[lang][key]) el.textContent = i18n[lang][key];
+      });
+      zhBtn.classList.toggle("active", lang === "zh");
+      enBtn.classList.toggle("active", lang === "en");
+    }
 
-            <motion.section class="space-y-8" variants={fadeIn} initial="initial" whileInView="whileInView" viewport={{ once: true, amount: 0.1 }}>
-                <div class="text-center">
-                    <h2 class="section-title-cn"><span class="tech-blue">第七部分</span> 藝術的本質與未來</h2>
-                    <p class="section-title-en mt-1">Part 7: The Essence of Art and Thoughts on the Future</p>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <motion.div class="bento-cell lg:col-span-2" variants={fadeInFromBottom}>
-                        <i class="fas fa-question-circle tech-blue icon-large mb-4 self-start"></i>
-                        <h3 class="text-2xl font-semibold text-white mb-2">重新定義「藝術家」與「原創」</h3>
-                        <p class="content-text">當機器也能創作，人類藝術家何需？原創性如何定義？版權歸誰？未來藝術家價值或在<span class="keyword">概念、提示詞藝術性、AI引導</span>與再創造。</p>
-                        <div class="tech-gradient-blue mt-auto"></div>
-                    </motion.div>
-                    <motion.div class="bento-cell text-center items-center" variants={fadeInFromBottom}>
-                        <p class="text-5xl md:text-6xl font-bold tech-blue">情感?</p>
-                        <p class="text-lg text-white mt-2">AI模擬情感 vs. 人類真實體驗</p>
-                        <p class="content-text mt-1">AI無法畫出「那天你在雨中等人的心情」。</p>
-                    </motion.div>
-                    <motion.div class="bento-cell" variants={fadeInFromBottom}>
-                         <i class="fas fa-balance-scale tech-blue icon-large mb-4 self-start"></i>
-                        <h3 class="text-2xl font-semibold text-white mb-2">倫理界線與責任</h3>
-                        <p class="content-text">防範AI生成虛假信息、侵犯權益、助長抄襲。需建立規範與共識。</p>
-                        <div class="tech-gradient-blue mt-auto"></div>
-                    </motion.div>
-                    <motion.div class="bento-cell" variants={fadeInFromBottom}>
-                        <i class="fas fa-hands-helping tech-blue icon-large mb-4 self-start"></i>
-                        <h3 class="text-2xl font-semibold text-white mb-2">人生即藝術</h3>
-                        <p class="content-text">每個人生是藝術品，用選擇、行動、夢想、信念構築。呼應PERMA正向心理學，追求<span class="keyword">全人健康 (Wellness)</span>。</p>
-                        <div class="tech-gradient-blue mt-auto"></div>
-                    </motion.div>
-                    <motion.div class="bento-cell" variants={fadeInFromBottom}>
-                        <i class="fas fa-seedling tech-blue icon-large mb-4 self-start"></i>
-                        <h3 class="text-2xl font-semibold text-white mb-2">永續發展與藝術</h3>
-                        <p class="content-text">藝術藉AI力量傳達SDGs理念。AI藝術發展應負責任，促文化多元包容。</p>
-                        <div class="tech-gradient-blue mt-auto"></div>
-                    </motion.div>
-                </div>
-            </motion.section>
-
-            <motion.section class="space-y-8" variants={fadeIn} initial="initial" whileInView="whileInView" viewport={{ once: true, amount: 0.1 }}>
-                <div class="text-center">
-                    <h2 class="section-title-cn">結論 <span class="tech-blue">重塑藝術的未來</span></h2>
-                    <p class="section-title-en mt-1">Conclusion: Reshaping the Future of Art in the Intelligent Era</p>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <motion.div class="bento-cell" variants={fadeInFromBottom}>
-                        <i class="fas fa-infinity tech-blue icon-large mb-4 self-start"></i>
-                        <h3 class="text-2xl font-semibold text-white mb-2">AI：藝術演進的新夥伴</h3>
-                        <p class="content-text">AI非終結藝術，而是提供前所未有的自由度與效率。但AI無法複製人類<span class="keyword">豐富情感、生命感悟、創作衝動</span>。</p>
-                        <div class="tech-gradient-blue mt-auto"></div>
-                    </motion.div>
-                    <motion.div class="bento-cell" variants={fadeInFromBottom}>
-                        <i class="fas fa-users tech-blue icon-large mb-4 self-start"></i>
-                        <h3 class="text-2xl font-semibold text-white mb-2">未來展望</h3>
-                        <p class="content-text">藝術家需積極學習實驗AI，拓展創意邊界。社會需建立倫理規範與法律框架，引導健康發展。</p>
-                        <div class="tech-gradient-blue mt-auto"></div>
-                    </motion.div>
-                     <motion.div class="bento-cell md:col-span-full text-center py-12" variants={fadeInFromBottom}>
-                         <p class="text-3xl md:text-4xl font-bold text-white">每個人都可以是<span class="tech-blue">新時代的藝術家</span></p>
-                         <p class="content-text mt-4">用科技賦予的畫筆，描繪屬於自己和世界的未來畫卷。</p>
-                         <p class="section-title-en mt-2">Everyone can be an artist of this new era.</p>
-                    </motion.div>
-                </div>
-            </motion.section>
-
-        </div> <footer class="text-center py-12 border-t border-neutral-800">
-            <p class="text-neutral-500 text-sm">&copy; 2025 AI & Art Exploration. Inspired by the future.</p>
-        </footer>
-
+    zhBtn.addEventListener("click", () => setLanguage("zh"));
+    enBtn.addEventListener("click", () => setLanguage("en"));
+  </script>
 </body>
 </html>
