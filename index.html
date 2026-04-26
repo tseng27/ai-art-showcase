@@ -6,136 +6,52 @@
   <title>AI 藝術教學網站 | AI Art Learning Studio</title>
   <style>
     :root {
-      --bg: #f8fafc;
-      --card: #ffffff;
-      --text: #0f172a;
-      --muted: #475569;
-      --line: #e2e8f0;
-      --accent: #2563eb;
+
     }
 
     * { box-sizing: border-box; }
 
     body {
       margin: 0;
-      font-family: "Noto Sans TC", "Inter", system-ui, -apple-system, sans-serif;
-      color: var(--text);
-      background: var(--bg);
-      line-height: 1.65;
-    }
 
-    .container {
-      width: min(980px, 92vw);
       margin: 0 auto;
     }
 
     header {
-      border-bottom: 1px solid var(--line);
-      background: rgba(248, 250, 252, 0.95);
-      position: sticky;
-      top: 0;
-      backdrop-filter: blur(6px);
+
     }
 
     .nav {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 0.9rem 0;
-      gap: 1rem;
+
     }
 
     .brand {
       font-weight: 700;
-      letter-spacing: 0.02em;
-    }
 
-    .lang-switch {
-      border: 1px solid var(--line);
-      background: #fff;
-      border-radius: 999px;
-      padding: 0.25rem;
-      display: inline-flex;
-      gap: 0.2rem;
     }
 
     .lang-switch button {
       border: 0;
-      border-radius: 999px;
-      padding: 0.35rem 0.75rem;
-      cursor: pointer;
-      background: transparent;
-      color: var(--muted);
-      font-size: 0.86rem;
-    }
 
-    .lang-switch button.active {
-      background: var(--accent);
-      color: white;
-    }
-
-    .hero {
-      padding: 4.5rem 0 2.5rem;
-      text-align: center;
     }
 
     h1 {
       margin: 0;
-      font-size: clamp(1.9rem, 4.8vw, 3rem);
-      line-height: 1.2;
-    }
 
-    .subtitle {
-      margin-top: 1rem;
-      color: var(--muted);
-      font-size: 1.04rem;
-    }
-
-    section {
-      margin: 1.6rem 0;
-      padding: 1.2rem;
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: 14px;
-    }
-
-    h2 {
-      margin: 0 0 0.6rem;
-      font-size: 1.28rem;
     }
 
     .grid {
       display: grid;
       gap: 1rem;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      margin-top: 1rem;
-    }
 
-    .card {
-      border: 1px solid var(--line);
-      border-radius: 12px;
-      padding: 1rem;
-      background: #fff;
     }
 
     .label {
       display: inline-block;
-      border: 1px solid #bfdbfe;
-      color: #1d4ed8;
-      background: #eff6ff;
-      border-radius: 999px;
-      padding: 0.1rem 0.55rem;
-      font-size: 0.75rem;
-      margin-bottom: 0.5rem;
-    }
 
-    ul { margin: 0.4rem 0 0; padding-left: 1.2rem; }
-
-    footer {
-      margin: 2.5rem 0 2rem;
-      text-align: center;
-      color: var(--muted);
-      font-size: 0.9rem;
     }
   </style>
 </head>
@@ -152,13 +68,7 @@
 
   <main class="container">
     <section class="hero">
-      <h1 data-i18n="heroTitle">用 AI 開啟藝術創作的新可能</h1>
-      <p class="subtitle" data-i18n="heroSubtitle">極簡、清楚、面向教育的 AI 藝術學習平台。</p>
-    </section>
 
-    <section>
-      <h2 data-i18n="introTitle">1. 課程介紹</h2>
-      <p data-i18n="introText">從基礎到實作，帶你理解生成式 AI、提示詞設計、風格控制與作品評估。</p>
       <div class="grid">
         <article class="card">
           <span class="label" data-i18n="introCard1Label">入門</span>
@@ -175,9 +85,7 @@
       </div>
     </section>
 
-    <section>
-      <h2 data-i18n="galleryTitle">2. 學生作品展示</h2>
-      <p data-i18n="galleryText">精選學生創作，呈現不同主題與技法：插畫、海報、概念設計與敘事影像。</p>
+
       <div class="grid">
         <article class="card"><strong data-i18n="work1Title">光影城市</strong><div data-i18n="work1Desc">主題：未來都市 / 技法：風格混合</div></article>
         <article class="card"><strong data-i18n="work2Title">自然機械</strong><div data-i18n="work2Desc">主題：生態想像 / 技法：材質細節強化</div></article>
@@ -185,9 +93,7 @@
       </div>
     </section>
 
-    <section>
-      <h2 data-i18n="toolsTitle">3. AI 工具教學</h2>
-      <p data-i18n="toolsText">以步驟化教學介紹常見 AI 藝術工具，並搭配案例練習。</p>
+
       <ul>
         <li data-i18n="toolItem1">文字轉圖像（Text-to-Image）基本流程</li>
         <li data-i18n="toolItem2">提示詞模板與迭代技巧</li>
@@ -195,9 +101,7 @@
       </ul>
     </section>
 
-    <section>
-      <h2 data-i18n="bilingualTitle">4. 雙語介面</h2>
-      <p data-i18n="bilingualText">支援中文 / English 一鍵切換，協助跨語言學習與國際展示。</p>
+
     </section>
   </main>
 
@@ -207,10 +111,7 @@
     const i18n = {
       zh: {
         brand: "AI 藝術學院",
-        heroTitle: "用 AI 開啟藝術創作的新可能",
-        heroSubtitle: "極簡、清楚、面向教育的 AI 藝術學習平台。",
-        introTitle: "1. 課程介紹",
-        introText: "從基礎到實作，帶你理解生成式 AI、提示詞設計、風格控制與作品評估。",
+
         introCard1Label: "入門",
         introCard1: "AI 藝術概念、工具環境設定、基本提示詞。",
         introCard2Label: "進階",
@@ -218,6 +119,7 @@
         introCard3Label: "專題",
         introCard3: "個人專題發表，建立作品集與展覽頁面。",
         galleryTitle: "2. 學生作品展示",
+>> main
         galleryText: "精選學生創作，呈現不同主題與技法：插畫、海報、概念設計與敘事影像。",
         work1Title: "光影城市",
         work1Desc: "主題：未來都市 / 技法：風格混合",
@@ -226,20 +128,19 @@
         work3Title: "記憶拼貼",
         work3Desc: "主題：個人故事 / 技法：敘事型提示詞",
         toolsTitle: "3. AI 工具教學",
+>>>> main
         toolsText: "以步驟化教學介紹常見 AI 藝術工具，並搭配案例練習。",
         toolItem1: "文字轉圖像（Text-to-Image）基本流程",
         toolItem2: "提示詞模板與迭代技巧",
         toolItem3: "圖像後製與作品輸出格式",
         bilingualTitle: "4. 雙語介面",
+>>>>> main
         bilingualText: "支援中文 / English 一鍵切換，協助跨語言學習與國際展示。",
         footer: "© 2026 AI Art Learning Studio"
       },
       en: {
         brand: "AI Art Academy",
-        heroTitle: "Create New Artistic Possibilities with AI",
-        heroSubtitle: "A minimal and education-focused platform for AI art learning.",
-        introTitle: "1. Course Introduction",
-        introText: "Learn generative AI, prompt design, style control, and project evaluation from basics to practice.",
+main
         introCard1Label: "Foundation",
         introCard1: "Core AI art concepts, tool setup, and starter prompts.",
         introCard2Label: "Advanced",
@@ -247,6 +148,7 @@
         introCard3Label: "Capstone",
         introCard3: "Present your personal project and build a portfolio page.",
         galleryTitle: "2. Student Works Gallery",
+ main
         galleryText: "Featured student projects across illustration, posters, concept art, and visual storytelling.",
         work1Title: "City of Light",
         work1Desc: "Theme: Future city / Technique: Style blending",
@@ -255,11 +157,13 @@
         work3Title: "Memory Collage",
         work3Desc: "Theme: Personal story / Technique: Narrative prompting",
         toolsTitle: "3. AI Tool Tutorials",
+
         toolsText: "Step-by-step lessons for common AI art tools with practical exercises.",
         toolItem1: "Text-to-image workflow essentials",
         toolItem2: "Prompt templates and iteration techniques",
         toolItem3: "Post-editing and export formats",
         bilingualTitle: "4. Bilingual Interface",
+>>>> main
         bilingualText: "Switch between Chinese and English to support global learning and showcases.",
         footer: "© 2026 AI Art Learning Studio"
       }
@@ -274,7 +178,7 @@
         const key = el.dataset.i18n;
         if (i18n[lang][key]) el.textContent = i18n[lang][key];
       });
-
+>>>>> main
       zhBtn.classList.toggle("active", lang === "zh");
       enBtn.classList.toggle("active", lang === "en");
     }
