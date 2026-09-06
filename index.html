@@ -3,696 +3,154 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AI 藝術學院｜AI Art Learning Studio</title>
-
+  <meta name="theme-color" content="#f5ead4" />
+  <meta name="description" content="AI 教學觀察所｜以藝術教育為核心，記錄 AI、創作與課堂實踐的更多可能。" />
+  <title>AI 教學觀察所｜AI Teaching Observatory</title>
   <style>
-    :root {
-      --bg: #eef2f6;
-      --dark: #0b0f16;
-      --text: #0b0f16;
-      --muted: #5f6673;
-      --glass: rgba(255,255,255,0.28);
-      --glass-dark: rgba(8,12,20,0.72);
-      --border: rgba(255,255,255,0.65);
-      --blue: #4cc9ff;
-      --purple: #a78bfa;
-      --pink: #ff4fd8;
-      --green: #27e0a3;
-      --gold: #ffd66b;
-      --radius: 34px;
+    :root{
+      --bg:#fbf7ef; --paper:#fffdf8; --ink:#342819; --muted:#7e705f;
+      --gold:#b8862d; --gold-2:#d9b66d; --gold-3:#f0dfb9; --green:#586a45;
+      --line:rgba(139,98,34,.18); --shadow:0 24px 70px rgba(70,45,14,.14);
+      --radius:28px;
     }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Noto Sans TC", "Inter", sans-serif;
-      background:
-        radial-gradient(circle at 15% 20%, rgba(76,201,255,.35), transparent 30%),
-        radial-gradient(circle at 85% 25%, rgba(255,79,216,.28), transparent 28%),
-        radial-gradient(circle at 25% 85%, rgba(39,224,163,.28), transparent 30%),
-        linear-gradient(135deg, #f8fafc, #dce3ec 48%, #f5f0ff);
-      color: var(--text);
-      line-height: 1.7;
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    .container {
-      width: min(1180px, 92%);
-      margin: auto;
-    }
-
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      backdrop-filter: blur(24px) saturate(170%);
-      background: rgba(255,255,255,0.42);
-      border-bottom: 1px solid rgba(255,255,255,0.65);
-      box-shadow: 0 12px 40px rgba(15,23,42,0.08);
-    }
-
-    .nav {
-      height: 76px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .brand {
-      font-weight: 900;
-      letter-spacing: -0.04em;
-      font-size: 1.05rem;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 18px;
-      font-size: 0.92rem;
-      color: rgba(15,23,42,0.72);
-    }
-
-    .nav-links a {
-      padding: 9px 14px;
-      border-radius: 999px;
-      transition: .3s;
-    }
-
-    .nav-links a:hover {
-      background: rgba(255,255,255,.55);
-      box-shadow: inset 0 0 0 1px rgba(255,255,255,.8);
-      color: #000;
-    }
-
-    .hero {
-      min-height: 88vh;
-      display: grid;
-      grid-template-columns: 1.05fr .95fr;
-      align-items: center;
-      gap: 54px;
-      padding: 90px 0;
-    }
-
-    .eyebrow {
-      color: #7c3aed;
-      letter-spacing: .18em;
-      font-size: .78rem;
-      text-transform: uppercase;
-      margin-bottom: 18px;
-      font-weight: 800;
-    }
-
-h1 {
-  font-size: clamp(3.6rem, 8vw, 7.6rem);
-  line-height: .9;
-  letter-spacing: -0.08em;
-  margin-bottom: 28px;
-  color: #111827;
-  text-shadow: 0 8px 30px rgba(255,255,255,0.35);
-}
-
-.hero p {
-  font-size: 1.18rem;
-  max-width: 720px;
-  color: rgba(17,24,39,.72);
-  margin-bottom: 34px;
-}
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 16px;
-    }
-
-    .glass-btn {
-      position: relative;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 150px;
-      padding: 15px 24px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,.8);
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.72), rgba(255,255,255,.22)),
-        rgba(255,255,255,.3);
-      backdrop-filter: blur(24px) saturate(180%);
-      box-shadow:
-        inset 0 1px 0 rgba(255,255,255,.9),
-        inset 0 -14px 28px rgba(10,20,40,.12),
-        0 18px 42px rgba(15,23,42,.18);
-      font-weight: 800;
-      transition: .35s ease;
-      overflow: hidden;
-    }
-
-    .glass-btn.dark {
-      color: #fff;
-      background:
-        linear-gradient(180deg, rgba(25,28,38,.95), rgba(5,8,15,.82));
-      box-shadow:
-        inset 0 1px 0 rgba(255,255,255,.28),
-        inset 0 -14px 28px rgba(76,201,255,.22),
-        0 20px 48px rgba(0,0,0,.28);
-    }
-
-    .glass-btn:hover {
-      transform: translateY(-3px) scale(1.02);
-    }
-
-.hero-visual {
-  position: relative;
-  min-height: 540px;
-  border-radius: 46px;
-  padding: 36px;
-  display: flex;
-  align-items: end;
-  overflow: hidden;
-  border: 1px solid rgba(255,255,255,.82);
-  background:
-    linear-gradient(to top, rgba(5,8,15,.72), rgba(255,255,255,.18)),
-    radial-gradient(circle at 30% 25%, rgba(76,201,255,.52), transparent 28%),
-    radial-gradient(circle at 75% 45%, rgba(255,79,216,.48), transparent 34%),
-    url('images/test.png');
-  background-size: cover;
-  background-position: center;
-  backdrop-filter: blur(32px) saturate(190%);
-  box-shadow:
-    inset 0 2px 0 rgba(255,255,255,.85),
-    inset 0 -28px 60px rgba(76,201,255,.22),
-    0 36px 100px rgba(15,23,42,.32);
-}
-
-    .hero-visual::before {
-      content:"";
-      position:absolute;
-      inset: 12%;
-      border-radius: 30px;
-      background:
-        linear-gradient(90deg, rgba(255,255,255,.12) 1px, transparent 1px),
-        linear-gradient(rgba(255,255,255,.10) 1px, transparent 1px);
-      background-size: 36px 36px;
-      opacity:.48;
-    }
-
-    .hero-visual::after {
-      content:"";
-      position:absolute;
-      width:220px;
-      height:220px;
-      right:12%;
-      bottom:-40px;
-      background: radial-gradient(circle, rgba(255,79,216,.46), transparent 68%);
-      filter: blur(8px);
-    }
-
-    .visual-caption {
-      position: relative;
-      z-index: 2;
-      color: #fff;
-    }
-
-    .visual-caption span {
-      color: var(--blue);
-      letter-spacing:.14em;
-      font-size:.82rem;
-      font-weight:900;
-      text-transform: uppercase;
-    }
-
-.visual-caption h3 {
-  font-size: 1.8rem;
-  margin-top: 10px;
-  color: #ffffff;
-  text-shadow: 0 4px 24px rgba(0,0,0,.45);
-}
-
-.visual-caption p {
-  color: rgba(255,255,255,.82);
-  margin-top: 6px;
-}
-
-    section {
-      padding: 78px 0;
-    }
-
-    .section-title {
-      display: flex;
-      justify-content: space-between;
-      align-items: end;
-      gap: 28px;
-      margin-bottom: 36px;
-    }
-
-    .section-title h2 {
-      font-size: clamp(2.1rem, 4vw, 3.7rem);
-      line-height: 1;
-      letter-spacing: -0.06em;
-      color: #030712;
-    }
-
-    .section-title p {
-      max-width: 570px;
-      color: rgba(15,23,42,.64);
-    }
-
-    .grid {
-      display: grid;
-      gap: 24px;
-    }
-
-    .grid-2 { grid-template-columns: repeat(2, 1fr); }
-    .grid-3 { grid-template-columns: repeat(3, 1fr); }
-    .grid-4 { grid-template-columns: repeat(4, 1fr); }
-
-    .card {
-      position: relative;
-      border-radius: var(--radius);
-      padding: 30px;
-      border: 1px solid rgba(255,255,255,.75);
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.62), rgba(255,255,255,.24));
-      backdrop-filter: blur(26px) saturate(180%);
-      box-shadow:
-        inset 0 1px 0 rgba(255,255,255,.85),
-        inset 0 -20px 44px rgba(15,23,42,.08),
-        0 22px 58px rgba(15,23,42,.14);
-      transition: .35s ease;
-      overflow: hidden;
-    }
-
-    .card::after {
-      content:"";
-      position:absolute;
-      left: 20px;
-      right: 20px;
-      bottom: 0;
-      height: 5px;
-      border-radius: 999px;
-      background: linear-gradient(90deg, var(--blue), var(--purple), var(--pink));
-      opacity:.58;
-      filter: blur(.4px);
-    }
-
-    .card:hover {
-      transform: translateY(-7px);
-      box-shadow:
-        inset 0 1px 0 rgba(255,255,255,.95),
-        inset 0 -20px 44px rgba(76,201,255,.14),
-        0 30px 80px rgba(15,23,42,.22);
-    }
-
-    .tag {
-      display:inline-block;
-      padding: 7px 13px;
-      border-radius:999px;
-      color:#075985;
-      font-size:.78rem;
-      font-weight:800;
-      border:1px solid rgba(76,201,255,.5);
-      background: rgba(255,255,255,.36);
-      margin-bottom: 16px;
-    }
-
-    .card h3 {
-      font-size:1.45rem;
-      margin-bottom:10px;
-      color:#030712;
-    }
-
-    .card p, .card li {
-      color: rgba(15,23,42,.65);
-    }
-
-    .card ul {
-      padding-left: 20px;
-      margin-top: 10px;
-    }
-
-    .image-block,
-    .work-image {
-      height: 170px;
-      border-radius: 26px;
-      margin-bottom: 22px;
-      border: 1px solid rgba(255,255,255,.78);
-      background:
-        linear-gradient(to top, rgba(8,12,20,.78), rgba(255,255,255,.08)),
-        radial-gradient(circle at 30% 35%, rgba(76,201,255,.42), transparent 34%),
-        radial-gradient(circle at 78% 58%, rgba(255,79,216,.34), transparent 30%),
-        rgba(8,12,20,.72);
-      box-shadow:
-        inset 0 1px 0 rgba(255,255,255,.44),
-        inset 0 -20px 40px rgba(76,201,255,.12),
-        0 16px 38px rgba(15,23,42,.16);
-      background-size: cover;
-      background-position: center;
-      overflow:hidden;
-      cursor:pointer;
-    }
-
-    .image-block.video {
-      background:
-        linear-gradient(to top, rgba(8,12,20,.82), rgba(255,255,255,.08)),
-        repeating-linear-gradient(90deg, rgba(255,255,255,.13) 0 2px, transparent 2px 24px),
-        radial-gradient(circle at 75% 44%, rgba(167,139,250,.48), transparent 36%);
-    }
-
-    .image-block.prompt {
-      background:
-        linear-gradient(to top, rgba(8,12,20,.82), rgba(255,255,255,.08)),
-        radial-gradient(circle at 25% 30%, rgba(255,214,107,.34), transparent 32%),
-        radial-gradient(circle at 75% 60%, rgba(76,201,255,.42), transparent 34%);
-    }
-
-    .flow {
-      display:grid;
-      grid-template-columns: repeat(6, 1fr);
-      gap:14px;
-    }
-
-    .step {
-      min-height: 150px;
-      padding: 22px;
-      border-radius: 28px;
-      border: 1px solid rgba(255,255,255,.75);
-      background: linear-gradient(180deg, rgba(255,255,255,.62), rgba(255,255,255,.22));
-      backdrop-filter: blur(24px) saturate(180%);
-      box-shadow: inset 0 -18px 34px rgba(76,201,255,.08), 0 16px 38px rgba(15,23,42,.12);
-    }
-
-    .num {
-      color:#7c3aed;
-      font-weight:900;
-      font-size:.82rem;
-      margin-bottom: 12px;
-    }
-
-    .platform-card {
-      min-height: 198px;
-      display:flex;
-      flex-direction:column;
-      justify-content:space-between;
-    }
-
-    .arrow {
-      color:#7c3aed;
-      font-weight:900;
-      margin-top: 20px;
-    }
-
-    .tools {
-      border-radius: 44px;
-      padding: 48px;
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.52), rgba(255,255,255,.18));
-      border: 1px solid rgba(255,255,255,.75);
-      backdrop-filter: blur(26px) saturate(180%);
-      box-shadow: 0 24px 72px rgba(15,23,42,.14);
-    }
-
-    .prompt-grid {
-      display:grid;
-      grid-template-columns: repeat(7,1fr);
-      gap:12px;
-      margin-top:22px;
-    }
-
-    .prompt-chip {
-      border-radius: 22px;
-      padding: 18px 12px;
-      text-align:center;
-      border:1px solid rgba(255,255,255,.72);
-      background: rgba(255,255,255,.36);
-      color: rgba(15,23,42,.62);
-      box-shadow: inset 0 -12px 28px rgba(76,201,255,.07);
-    }
-
-    .prompt-chip strong {
-      display:block;
-      color:#030712;
-      margin-bottom:6px;
-    }
-
-    .placeholder {
-      padding: 34px;
-      border-radius: 28px;
-      background: rgba(255,255,255,.42);
-      border: 1px dashed rgba(15,23,42,.18);
-      color: rgba(15,23,42,.65);
-    }
-
-    footer {
-      padding: 50px 0;
-      text-align:center;
-      color: rgba(15,23,42,.55);
-    }
-
-    @media (max-width:1000px) {
-      .hero, .grid-2, .grid-3, .grid-4, .flow, .prompt-grid {
-        grid-template-columns: 1fr;
-      }
-      .hero { padding: 76px 0 50px; }
-      .hero-visual { min-height: 360px; }
-      .section-title { display:block; }
-      .nav-links { display:none; }
-      .tools { padding: 30px; }
-    }
+    *{box-sizing:border-box} html{scroll-behavior:smooth}
+    body{margin:0;font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;background:
+      radial-gradient(circle at 8% 4%,rgba(241,215,163,.46),transparent 22%),
+      radial-gradient(circle at 94% 15%,rgba(199,214,176,.28),transparent 24%),
+      linear-gradient(#fffdf8,#faf3e5 55%,#f8f1e6);color:var(--ink);line-height:1.7;overflow-x:hidden}
+    a{color:inherit;text-decoration:none} button,input{font:inherit}.wrap{width:min(1380px,92%);margin:auto}
+    .serif{font-family:"Noto Serif TC","Songti TC","PMingLiU",serif}
+    header{position:sticky;top:0;z-index:50;background:rgba(255,252,246,.82);backdrop-filter:blur(18px) saturate(130%);border-bottom:1px solid var(--line)}
+    .nav{height:76px;display:flex;align-items:center;justify-content:space-between;gap:22px}
+    .brand{display:flex;align-items:center;gap:12px;min-width:max-content}.brand-mark{width:46px;height:46px;border:1.5px solid var(--gold);border-radius:14px;display:grid;place-items:center;background:linear-gradient(145deg,#fff8e8,#e7c77f);box-shadow:inset 0 0 0 5px rgba(255,255,255,.38)}
+    .brand-mark svg{width:28px;height:28px}.brand strong{display:block;font-size:1.15rem;letter-spacing:.06em}.brand small{display:block;color:#8f744d;font-family:Georgia,serif;letter-spacing:.04em}
+    .nav-links{display:flex;gap:8px;align-items:center}.nav-links a{padding:10px 13px;border-radius:999px;font-weight:700;font-size:.94rem}.nav-links a:hover{background:#f2e5c9;color:#6f4b12}
+    .nav-cta{padding:11px 20px;border-radius:999px;background:linear-gradient(135deg,#c99b45,#8e641e);color:#fff;font-weight:800;box-shadow:0 9px 22px rgba(143,98,26,.24)}
+    .hero{position:relative;min-height:760px;display:grid;grid-template-columns:1.02fr .98fr;align-items:center;gap:54px;padding:82px 0 120px}
+    .hero:before{content:"";position:absolute;inset:0 auto auto 50%;width:58vw;height:58vw;transform:translate(-20%,-28%);background:radial-gradient(circle,rgba(242,208,131,.30),transparent 62%);pointer-events:none}
+    .kicker{font-size:.82rem;letter-spacing:.22em;color:#9a742f;font-weight:900;margin-bottom:18px}.hero h1{font-size:clamp(3rem,6.4vw,6.8rem);line-height:.95;margin:0 0 18px;letter-spacing:-.05em;font-weight:900}.hero h1 span{display:block;font-size:.28em;letter-spacing:.06em;color:#7a603b;margin-top:16px;font-family:Georgia,serif;font-weight:500}
+    .hero-lead{font-size:1.22rem;color:#665745;max-width:690px;margin:26px 0 30px}.hero-actions{display:flex;gap:14px;flex-wrap:wrap}.btn{display:inline-flex;align-items:center;gap:10px;padding:15px 24px;border-radius:999px;border:1px solid #ba8e42;font-weight:800;transition:.25s}.btn.primary{background:linear-gradient(135deg,#c99b45,#8b601a);color:#fff;box-shadow:0 15px 30px rgba(139,95,24,.23)}.btn.ghost{background:rgba(255,255,255,.58)}.btn:hover{transform:translateY(-3px)}
+    .hero-note{margin-top:28px;color:#8a7659;font-size:.92rem;display:flex;align-items:center;gap:10px}.hero-note:before,.hero-note:after{content:"";width:44px;height:1px;background:#c9a45d}
+    .hero-stage{position:relative;min-height:590px;display:grid;place-items:center}.halo{position:absolute;width:460px;height:460px;border-radius:50%;background:radial-gradient(circle,rgba(255,225,155,.9),rgba(224,177,72,.24) 38%,transparent 69%);filter:blur(2px);animation:pulse 5s ease-in-out infinite}
+    .book{position:relative;width:330px;height:220px;z-index:3;filter:drop-shadow(0 32px 32px rgba(107,72,19,.22));animation:float 6s ease-in-out infinite}.book svg{width:100%;height:100%}.orbit{position:absolute;width:430px;height:430px;border:1px dashed rgba(170,123,43,.5);border-radius:50%;animation:spin 28s linear infinite}.orb{position:absolute;width:58px;height:58px;border-radius:50%;background:rgba(255,251,238,.88);border:1px solid #d9b66d;box-shadow:0 10px 30px rgba(111,78,28,.15);display:grid;place-items:center;font-size:1.45rem}.o1{top:4%;left:46%}.o2{right:4%;top:47%}.o3{left:6%;top:55%}.o4{left:21%;top:12%}
+    .float-card{position:absolute;width:190px;padding:12px;background:rgba(255,253,247,.74);backdrop-filter:blur(10px);border:1px solid rgba(183,140,69,.36);border-radius:18px;box-shadow:0 18px 36px rgba(80,52,15,.12);z-index:4;transition:.3s}.float-card:hover{transform:translateY(-8px) rotate(0)}.fc1{right:-5px;top:76px;transform:rotate(2deg)}.fc2{right:-24px;bottom:76px;transform:rotate(-2deg)}.fc3{left:-8px;top:112px;transform:rotate(-3deg)}.fc4{left:10px;bottom:52px;transform:rotate(2deg)}
+    .thumb{height:86px;border-radius:13px;background:linear-gradient(135deg,rgba(49,79,70,.7),rgba(218,176,91,.8)),url('images/test.png') center/cover}.float-card:nth-of-type(4) .thumb{background:linear-gradient(135deg,#d8d1c3,#879b73)}.float-card:nth-of-type(5) .thumb{background:linear-gradient(135deg,#88a0ad,#d7b772)}.float-card:nth-of-type(6) .thumb{background:linear-gradient(135deg,#c9dcb9,#749a69)}.float-card strong{display:flex;justify-content:space-between;align-items:center;margin-top:9px;font-size:.94rem}
+    .wave{position:absolute;left:50%;bottom:-1px;width:110vw;height:94px;transform:translateX(-50%);background:var(--bg);border-radius:50% 50% 0 0/72% 72% 0 0;border-top:1px solid rgba(185,139,62,.35)}
+    section{padding:84px 0}.section-head{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:34px}.eyebrow{color:#9d7632;letter-spacing:.2em;font-size:.78rem;font-weight:900}.section-head h2{font-size:clamp(2rem,4vw,3.5rem);margin:4px 0 0;letter-spacing:-.035em}.section-head p{color:var(--muted);max-width:520px;margin:0}
+    .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}.story{background:rgba(255,254,250,.88);border:1px solid var(--line);border-radius:24px;overflow:hidden;box-shadow:0 18px 42px rgba(70,44,11,.08);transition:.3s}.story:hover{transform:translateY(-7px);box-shadow:var(--shadow)}.story-img{height:205px;position:relative;background:linear-gradient(135deg,#d3cab8,#7d8c76)}.story:nth-child(2) .story-img{background:linear-gradient(135deg,#c8d6d1,#8b7052),url('images/test.png') center/cover; background-blend-mode:multiply}.story:nth-child(3) .story-img{background:linear-gradient(135deg,#7f9aa3,#d6b96b)}.tag{position:absolute;top:14px;left:14px;background:rgba(255,253,247,.88);padding:6px 11px;border-radius:999px;font-size:.78rem;font-weight:800}.story-body{padding:20px}.story h3{font-size:1.23rem;margin:0 0 8px}.story p{margin:0;color:var(--muted);font-size:.95rem}.story-meta{display:flex;gap:18px;color:#9a8c79;font-size:.82rem;margin-top:16px}
+    .quote-panel{margin-top:26px;display:grid;grid-template-columns:1.3fr .7fr;gap:22px}.quote{padding:34px;border:1px solid var(--line);border-radius:26px;background:linear-gradient(135deg,#fffef9,#f2e5c9);font-family:"Noto Serif TC",serif;font-size:1.6rem;line-height:1.6}.quote small{display:block;font-family:inherit;font-size:.85rem;color:#987a4d;margin-top:12px}.side-note{padding:30px;border-radius:26px;background:#334036;color:#fff;display:flex;flex-direction:column;justify-content:space-between}.side-note em{font-family:Georgia,serif;color:#ead9ad;letter-spacing:.08em}.side-note strong{font-size:1.65rem;font-family:"Noto Serif TC",serif;line-height:1.5}
+    .paths{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.path{padding:24px;border-radius:24px;border:1px solid var(--line);background:rgba(255,255,255,.64);min-height:220px}.path .num{color:#b58738;font-size:.8rem;font-weight:900}.path .icon{font-size:2.1rem;margin:28px 0 16px}.path h3{margin:0 0 8px}.path p{color:var(--muted);font-size:.92rem}.path:hover{background:#fff5df;transform:translateY(-4px)}
+    .tools-shell{padding:30px;background:rgba(255,253,246,.76);border:1px solid var(--line);border-radius:30px;box-shadow:var(--shadow)}.tool-top{display:flex;gap:12px;justify-content:space-between;align-items:center;flex-wrap:wrap}.search{flex:1;min-width:260px;position:relative}.search input{width:100%;border:1px solid #dcc79d;background:#fffdf7;border-radius:999px;padding:14px 18px 14px 46px;outline:none}.search:before{content:"⌕";position:absolute;left:18px;top:8px;font-size:1.4rem;color:#9d7632}.chips{display:flex;gap:8px;flex-wrap:wrap;margin:20px 0}.chip{border:1px solid #ddc99f;background:#fffdf8;color:#76582b;border-radius:999px;padding:8px 13px;cursor:pointer}.chip.active,.chip:hover{background:#b8862d;color:white;border-color:#b8862d}.tool-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}.tool{padding:18px;border:1px solid var(--line);border-radius:20px;background:#fff;transition:.25s}.tool:hover{transform:translateY(-5px);box-shadow:0 18px 30px rgba(69,43,11,.09)}.tool-logo{width:44px;height:44px;border-radius:13px;display:grid;place-items:center;background:#f4ead5;font-size:1.45rem}.tool h3{margin:12px 0 5px}.tool p{color:var(--muted);font-size:.88rem;min-height:66px}.rating{color:#bc8a31;font-size:.82rem;letter-spacing:.06em}.tool .more{margin-top:14px;display:inline-block;color:#9a6c23;font-weight:800;font-size:.86rem}
+    .course{display:grid;grid-template-columns:.9fr 1.1fr;gap:28px}.course-copy{padding:34px;border-radius:28px;background:linear-gradient(160deg,#354238,#1f2a22);color:white}.course-copy h3{font-size:2.2rem;margin:10px 0 18px}.course-copy p{color:#dde5dc}.course-copy .quote-mini{margin-top:26px;padding:18px;border:1px solid rgba(255,255,255,.16);border-radius:18px;color:#ead7aa}.timeline{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.step{padding:22px;border:1px solid var(--line);border-radius:22px;background:#fffdf8}.step b{display:inline-grid;place-items:center;width:38px;height:38px;border-radius:50%;background:#c69a4b;color:white}.step h4{margin:14px 0 6px;font-size:1.05rem}.step p{margin:0;color:var(--muted);font-size:.9rem}
+    .gallery{display:grid;grid-template-columns:1.25fr .75fr .75fr;grid-auto-rows:220px;gap:16px}.work{border-radius:24px;overflow:hidden;position:relative;border:1px solid var(--line);background:linear-gradient(135deg,#8ba2a0,#dac082)}.work:nth-child(1){grid-row:span 2;background:linear-gradient(135deg,rgba(52,72,70,.4),rgba(217,177,88,.4)),url('images/test.png') center/cover}.work:nth-child(2){background:linear-gradient(145deg,#ecd4ba,#d1846b)}.work:nth-child(3){background:linear-gradient(145deg,#91abb1,#30495e)}.work:nth-child(4){background:linear-gradient(145deg,#b4c99e,#6c8f67)}.work:nth-child(5){background:linear-gradient(145deg,#dcb989,#8e6a55)}.work span{position:absolute;left:16px;bottom:16px;background:rgba(255,252,245,.88);backdrop-filter:blur(8px);padding:8px 12px;border-radius:999px;font-weight:800;font-size:.86rem}.work:after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 40%,rgba(35,25,10,.18));opacity:0;transition:.3s}.work:hover:after{opacity:1}
+    .about{display:grid;grid-template-columns:.9fr 1.1fr;gap:30px;align-items:stretch}.about-card{border-radius:30px;padding:38px;background:#fffdf8;border:1px solid var(--line)}.about-card h2{font-size:2.5rem;line-height:1.25;margin:6px 0 16px}.about-card p{color:var(--muted)}.about-photo{border-radius:30px;background:linear-gradient(135deg,rgba(62,84,72,.45),rgba(211,175,98,.42)),url('images/test.png') center/cover;min-height:380px;position:relative;overflow:hidden}.scribble{position:absolute;right:24px;bottom:24px;background:rgba(255,251,241,.9);padding:18px 22px;border-radius:18px;transform:rotate(-3deg);font-family:"Noto Serif TC",serif;color:#755321;box-shadow:0 15px 35px rgba(69,43,11,.16)}
+    footer{padding:30px 0 44px;border-top:1px solid var(--line);color:#7f6f59}.foot{display:flex;justify-content:space-between;gap:22px;align-items:center}.foot b{color:#4d3c25}
+    .reveal{opacity:0;transform:translateY(24px);transition:.75s ease}.reveal.visible{opacity:1;transform:none}
+    .modal{position:fixed;inset:0;background:rgba(45,32,16,.38);display:none;place-items:center;padding:22px;z-index:90}.modal.open{display:grid}.modal-card{width:min(620px,96vw);background:#fffdf8;border-radius:28px;padding:30px;border:1px solid #ddc69a;box-shadow:0 40px 100px rgba(37,24,8,.28)}.modal-close{float:right;border:0;background:#f2e4ca;width:36px;height:36px;border-radius:50%;cursor:pointer}.modal-card h3{font-size:1.8rem;margin:8px 0}.modal-card p{color:var(--muted)}
+    @keyframes float{50%{transform:translateY(-12px)}} @keyframes pulse{50%{transform:scale(1.05);opacity:.8}} @keyframes spin{to{transform:rotate(360deg)}}
+    @media(max-width:1100px){.hero{grid-template-columns:1fr;padding-top:56px}.hero-stage{min-height:530px}.nav-links a:nth-child(4),.nav-links a:nth-child(5){display:none}.tool-grid{grid-template-columns:repeat(3,1fr)}.paths{grid-template-columns:repeat(2,1fr)}.course,.about{grid-template-columns:1fr}}
+    @media(max-width:760px){.nav{height:68px}.brand small{display:none}.nav-links{display:none}.nav-cta{padding:9px 15px}.hero{min-height:auto;padding:58px 0 90px}.hero h1{font-size:clamp(3rem,15vw,5rem)}.hero-stage{min-height:440px;transform:scale(.88);margin-inline:-30px}.float-card{width:158px}.fc1{right:0}.fc2{right:-8px}.fc3{left:0}.fc4{left:0}.grid3,.quote-panel{grid-template-columns:1fr}.paths{grid-template-columns:1fr}.tool-grid{grid-template-columns:1fr 1fr}.gallery{grid-template-columns:1fr 1fr;grid-auto-rows:180px}.work:nth-child(1){grid-row:span 1;grid-column:span 2}.section-head{align-items:start;flex-direction:column}.timeline{grid-template-columns:1fr}.foot{align-items:flex-start;flex-direction:column}}
+    @media(max-width:480px){.hero-stage{transform:scale(.72);margin-block:-40px -60px}.tool-grid,.gallery{grid-template-columns:1fr}.work:nth-child(1){grid-column:auto}.tool{min-height:auto}}
   </style>
 </head>
-
 <body>
-  <header>
-    <div class="container nav">
-      <div class="brand">AI ART LEARNING STUDIO</div>
-      <nav class="nav-links">
-        <a href="#course">課程介紹</a>
-        <a href="#practice">創作流程</a>
-        <a href="#platforms">延伸平台</a>
-        <a href="#my-gallery">我的作品</a>
-        <a href="#student-gallery">學生作品</a>
-        <a href="#tools">AI工具教學</a>
-      </nav>
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#top" aria-label="AI 教學觀察所首頁">
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none"><path d="M12 18c10-5 17-4 20 1v29c-5-5-12-6-20-2V18Zm40 0c-10-5-17-4-20 1v29c5-5 12-6 20-2V18Z" stroke="#7a5315" stroke-width="3"/><circle cx="32" cy="16" r="7" fill="#fff3cf" stroke="#7a5315" stroke-width="3"/><path d="M29 16h6M32 13v6" stroke="#7a5315" stroke-width="2"/></svg></span>
+      <span><strong class="serif">AI 教學觀察所</strong><small>AI Teaching Observatory</small></span>
+    </a>
+    <nav class="nav-links" aria-label="主要導覽"><a href="#observations">教學觀察</a><a href="#courses">課程設計</a><a href="#tools">AI 工具</a><a href="#works">作品案例</a><a href="#about">關於我</a></nav>
+    <a class="nav-cta" href="#observations">開始探索</a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero wrap">
+    <div class="reveal">
+      <div class="kicker">ART × AI × EDUCATION</div>
+      <h1 class="serif">AI 教學<br>觀察所<span>AI Teaching Observatory</span></h1>
+      <p class="hero-lead">以藝術教育為核心，觀察 AI、創作與課堂實踐的未來樣貌。這裡不只分享工具，更記錄學生如何看見、思考、創造與表達。</p>
+      <div class="hero-actions"><a class="btn primary" href="#observations">探索教學筆記 <span>→</span></a><a class="btn ghost" href="#courses">查看課程案例 <span>→</span></a></div>
+      <div class="hero-note">讓 AI 成為教與學的創造力夥伴</div>
     </div>
-  </header>
+    <div class="hero-stage reveal" aria-label="AI 教學主題視覺">
+      <div class="halo"></div><div class="orbit"><div class="orb o1">🎓</div><div class="orb o2">👥</div><div class="orb o3">🖼️</div><div class="orb o4">✦</div></div>
+      <div class="book" aria-hidden="true"><svg viewBox="0 0 420 280"><defs><radialGradient id="g" cx="50%" cy="50%" r="70%"><stop offset="0" stop-color="#fff8d9"/><stop offset=".55" stop-color="#e1b154"/><stop offset="1" stop-color="#9b6a18"/></radialGradient></defs><path d="M205 230C156 198 102 198 38 218V74c70-20 126-12 167 28v128Z" fill="#fff8e8" stroke="#b37e27" stroke-width="6"/><path d="M215 230c49-32 103-32 167-12V74c-70-20-126-12-167 28v128Z" fill="#fff8e8" stroke="#b37e27" stroke-width="6"/><path d="M210 104v126" stroke="#c89b49" stroke-width="5"/><circle cx="210" cy="90" r="56" fill="url(#g)"/><path d="M192 91h36M210 73v36M187 53l9 12M233 53l-9 12" stroke="#fff" stroke-width="7" stroke-linecap="round"/></svg></div>
+      <article class="float-card fc1"><div class="thumb"></div><strong>寄給未來的自己 <span>›</span></strong></article>
+      <article class="float-card fc2"><div class="thumb"></div><strong>AI × AR 教學 <span>›</span></strong></article>
+      <article class="float-card fc3"><div class="thumb"></div><strong>VR 文化探索 <span>›</span></strong></article>
+      <article class="float-card fc4"><div class="thumb"></div><strong>智慧綠農專題 <span>›</span></strong></article>
+    </div>
+    <div class="wave"></div>
+  </section>
 
-  <main>
-    <section class="hero container">
-      <div>
-        <div class="eyebrow">Generative AI × Art Education</div>
-        <h1>AI藝術創作課程</h1>
-        <p>從想像、提示詞、圖像到影片，學習如何運用生成式 AI 建立自己的視覺語言，讓創意成為可被看見、可被敘事、可被發表的作品。</p>
-        <div class="hero-actions">
-          <a class="glass-btn dark" href="#course">開始探索課程</a>
-          <a class="glass-btn" href="#my-gallery">觀看作品展示</a>
-        </div>
+  <section id="observations">
+    <div class="wrap">
+      <div class="section-head reveal"><div><div class="eyebrow">FEATURED / 教學觀察</div><h2 class="serif">最新教學觀察</h2></div><p>不是展示「AI 有多厲害」，而是記錄它如何進入真實課堂，讓學生重新看見自己的經驗與可能。</p></div>
+      <div class="grid3">
+        <article class="story reveal"><div class="story-img"><span class="tag">教學觀察</span></div><div class="story-body"><h3>當 AI 走進藝術課堂</h3><p>從生成到表達，重新看見學生的創造力，以及老師如何讓科技回到人的感受。</p><div class="story-meta"><span>藝術教育</span><span>AI 融入</span></div></div></article>
+        <article class="story reveal"><div class="story-img"><span class="tag">課程設計</span></div><div class="story-body"><h3>AI × AR 融合教學實踐</h3><p>從 AI 圖像到動態影像，再以 AR 技術讓作品進入真實空間，建立跨媒材敘事。</p><div class="story-meta"><span>EyeJack</span><span>Pixverse</span></div></div></article>
+        <article class="story reveal"><div class="story-img"><span class="tag">作品案例</span></div><div class="story-body"><h3>VR 文化探索：走進地方故事</h3><p>從世界遺產的沉浸觀看出發，回到台灣文化與地方圖像，延伸文創專題發想。</p><div class="story-meta"><span>VR</span><span>文化創意</span></div></div></article>
       </div>
+      <div class="quote-panel reveal"><div class="quote">「觀察，是教育中最溫柔的力量。」<small>AI 教學觀察所｜從課堂現場出發</small></div><div class="side-note"><em>Observe · Create · Teach</em><strong>更好的教育，從看見每一個學生開始。</strong></div></div>
+    </div>
+  </section>
 
-      <div class="hero-visual">
-        <div class="visual-caption">
-          <span>AI Art Classroom</span>
-          <h3>生成式AI藝術教室</h3>
-          <p>以影像、分鏡與提示詞建立完整創作流程。</p>
-        </div>
+  <section id="courses">
+    <div class="wrap">
+      <div class="section-head reveal"><div><div class="eyebrow">COURSE DESIGN</div><h2 class="serif">把科技放進真正的學習歷程</h2></div><p>以「生活經驗 → 視覺轉譯 → 科技媒材 → 反思分享」為骨架，讓 AI 成為創作與理解的橋梁。</p></div>
+      <div class="paths reveal">
+        <article class="path"><div class="num">01 / SELF</div><div class="icon">✉️</div><h3>寄給未來的自己</h3><p>從生活經驗、情緒與視覺元素出發，用藝術建立自我敘事。</p></article>
+        <article class="path"><div class="num">02 / AI + AR</div><div class="icon">🪄</div><h3>AI × AR 創作</h3><p>AI 生成圖像與影片，結合 AR，讓平面作品成為可觀看的動態敘事。</p></article>
+        <article class="path"><div class="num">03 / VR</div><div class="icon">🥽</div><h3>VR 文化探索</h3><p>用沉浸式觀看比較世界遺產視覺特徵，再回到在地文化進行轉譯。</p></article>
+        <article class="path"><div class="num">04 / GREEN AGRI</div><div class="icon">🌱</div><h3>智慧綠農專題</h3><p>從屏東農業與地方生活發想，以多媒體設計建立科技與土地的連結。</p></article>
       </div>
-    </section>
-
-    <section id="course" class="container">
-      <div class="section-title">
-        <h2>01 — 課程介紹</h2>
-        <p>讓學生理解生成式 AI 可以如何應用於藝術創作，並學會用提示詞生成自己想要的圖像與影片。</p>
+      <div class="course reveal" style="margin-top:26px">
+        <div class="course-copy"><div class="eyebrow" style="color:#e5c884">UNIT CASE</div><h3 class="serif">生活 × AI × 未來<br>我的明信片創作計畫</h3><p>一個單元不只是一張作品，而是從觀察、選擇、轉譯到分享的完整學習路徑。</p><div class="quote-mini">「在真實生活經驗中，培養學生的觀察力、表達力與未來想像。」</div></div>
+        <div class="timeline"><article class="step"><b>01</b><h4>課程導入</h4><p>回顧最近生活，辨認重要的人、事、物與感受。</p></article><article class="step"><b>02</b><h4>AI 生成圖像</h4><p>把想像轉成畫面，同時討論風格、構圖與選擇。</p></article><article class="step"><b>03</b><h4>AR 動畫呈現</h4><p>加入動態、聲音或旁白，延伸作品的敘事方式。</p></article><article class="step"><b>04</b><h4>反思與分享</h4><p>觀看彼此作品，說明媒材如何影響作品的意義。</p></article></div>
       </div>
+    </div>
+  </section>
 
-      <div class="grid grid-3">
-        <article class="card">
-          <div class="image-block"></div>
-          <span class="tag">Image Generation</span>
-          <h3>AI 圖像生成</h3>
-          <p>學習角色設計、場景建構、風格控制與視覺敘事，將腦中的想法轉化為具體圖像。</p>
-        </article>
+  <section id="tools">
+    <div class="wrap">
+      <div class="section-head reveal"><div><div class="eyebrow">AI TOOLS / 資源整理</div><h2 class="serif">善用 AI，讓美感教育走得更遠</h2></div><p>不是工具越多越好，而是知道何時用、為什麼用，以及它能為學習增加什麼。</p></div>
+      <div class="tools-shell reveal"><div class="tool-top"><div class="search"><input id="toolSearch" type="search" placeholder="搜尋工具名稱、用途或關鍵字…" aria-label="搜尋 AI 教學工具"></div></div>
+      <div class="chips" role="group" aria-label="工具分類"><button class="chip active" data-filter="all">全部</button><button class="chip" data-filter="文字">文字生成</button><button class="chip" data-filter="圖像">圖像生成</button><button class="chip" data-filter="影片">影音創作</button><button class="chip" data-filter="AR">AR / VR</button><button class="chip" data-filter="知識">教學應用</button></div>
+      <div class="tool-grid" id="toolGrid">
+        <article class="tool" data-cat="文字 知識" data-key="chatgpt 對話 文字 教案 提示詞"><div class="tool-logo">◉</div><h3>ChatGPT</h3><div class="rating">● ● ● ● ○</div><p>教學發想、文字生成、提示詞、學習單與課程架構整理。</p><button class="more" data-modal="ChatGPT|適合用於課程發想、提示詞優化、文字轉譯、學習單與反思問題設計。重點不是代替學生作答，而是讓學生看見不同思考路徑。">了解更多 →</button></article>
+        <article class="tool" data-cat="文字 圖像 知識" data-key="gemini google 圖像 多模態"><div class="tool-logo">✦</div><h3>Gemini</h3><div class="rating">● ● ● ● ○</div><p>支援多模態理解與生成，適合圖文教學與視覺分析。</p><button class="more" data-modal="Gemini|可搭配圖像、文字與多模態任務，用來比較不同 AI 的視覺理解與生成結果。">了解更多 →</button></article>
+        <article class="tool" data-cat="影片" data-key="pixverse 影片 圖生影片 動畫"><div class="tool-logo">▶</div><h3>Pixverse</h3><div class="rating">● ● ● ○ ○</div><p>快速把靜態圖像轉成短影片，適合課堂快速原型。</p><button class="more" data-modal="Pixverse|可把學生的 AI 圖像快速轉成短影片，適合 6 秒左右的動態嘗試與分鏡概念驗證。">了解更多 →</button></article>
+        <article class="tool" data-cat="AR" data-key="eyejack AR 擴增實境"><div class="tool-logo">◎</div><h3>EyeJack</h3><div class="rating">● ● ● ○ ○</div><p>讓平面圖像疊加動態內容，適合 AR 藝術與展示。</p><button class="more" data-modal="EyeJack|把圖像、影片與實體作品疊合，讓學生理解虛實整合、展示設計與觀者經驗。">了解更多 →</button></article>
+        <article class="tool" data-cat="知識 文字" data-key="notebooklm 筆記 教材 知識整理"><div class="tool-logo">▤</div><h3>NotebookLM</h3><div class="rating">● ● ● ● ○</div><p>根據教師提供的資料整理重點、產生教材與學習素材。</p><button class="more" data-modal="NotebookLM|適合把課本、教師資料與教學紀錄整合成摘要、提問、簡報草稿與學習資源。">了解更多 →</button></article>
+      </div></div>
+    </div>
+  </section>
 
-        <article class="card">
-          <div class="image-block video"></div>
-          <span class="tag">Video Creation</span>
-          <h3>AI 影片生成</h3>
-          <p>從單張圖像延伸為動態影像，理解分鏡、運鏡、光影與情緒如何影響影片表現。</p>
-        </article>
+  <section id="works">
+    <div class="wrap">
+      <div class="section-head reveal"><div><div class="eyebrow">STUDENT WORKS</div><h2 class="serif">作品不是終點，而是學習被看見的痕跡</h2></div><p>從手繪、AI 生成到 AR / VR，保留學生選擇、修改與重新理解自己的過程。</p></div>
+      <div class="gallery reveal"><div class="work"><span>AI 藝術創作</span></div><div class="work"><span>明信片 × 自我敘事</span></div><div class="work"><span>VR × 文化探索</span></div><div class="work"><span>智慧綠農 × 視覺設計</span></div><div class="work"><span>AR × 動態作品</span></div></div>
+    </div>
+  </section>
 
-        <article class="card">
-          <div class="image-block prompt"></div>
-          <span class="tag">Prompt Design</span>
-          <h3>提示詞設計</h3>
-          <p>提示詞不是指令，而是一種創作語言。學生將學會描述主體、風格、構圖、光線與氛圍。</p>
-        </article>
-      </div>
-    </section>
+  <section id="about">
+    <div class="wrap about reveal"><div class="about-card"><div class="eyebrow">ABOUT</div><h2 class="serif">讓 AI 走進課堂，<br>也走進孩子的心。</h2><p>AI 教學觀察所是一個以藝術教育為核心的實踐平台。從高中美術、AI 多媒體、AR / VR 到地方文化與智慧綠農，我想留下的不只是工具教學，而是每一次課堂如何讓學生更能看見自己、理解世界，並創造新的可能。</p><p><b>教育 × 藝術 × 科技 × 人</b><br>Observe · Create · Teach · A Better Tomorrow</p><a class="btn ghost" href="mailto:hello@example.com">聯絡與交流 →</a></div><div class="about-photo"><div class="scribble">好的課程，<br>應該讓學生看見更大的世界。</div></div></div>
+  </section>
+</main>
 
-    <section id="practice" class="container">
-      <div class="section-title">
-        <h2>02 — 創作流程</h2>
-        <p>本課程不只是使用 AI，而是設計一套完整的創作流程。</p>
-      </div>
+<footer><div class="wrap foot"><div><b class="serif">AI 教學觀察所</b><br><small>AI Teaching Observatory</small></div><div>用 AI 看見更多可能的教育風景 · © 2026</div></div></footer>
 
-      <div class="flow">
-        <div class="step"><div class="num">STEP 01</div><h3>觀察</h3><p>從名畫、影像與生活經驗中找到視覺線索。</p></div>
-        <div class="step"><div class="num">STEP 02</div><h3>情緒</h3><p>將畫面轉化為情感、氣氛與敘事方向。</p></div>
-        <div class="step"><div class="num">STEP 03</div><h3>Prompt</h3><p>用結構化文字描述作品想法。</p></div>
-        <div class="step"><div class="num">STEP 04</div><h3>圖像</h3><p>生成符合主題與風格的視覺作品。</p></div>
-        <div class="step"><div class="num">STEP 05</div><h3>分鏡</h3><p>設計畫面、鏡頭、光影與節奏。</p></div>
-        <div class="step"><div class="num">STEP 06</div><h3>影片</h3><p>將靜態作品延伸為動態影像。</p></div>
-      </div>
-    </section>
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><div class="modal-card"><button class="modal-close" aria-label="關閉">×</button><div class="eyebrow">TOOL NOTE</div><h3 class="serif" id="modalTitle"></h3><p id="modalText"></p></div></div>
 
-    <section id="platforms" class="container">
-      <div class="section-title">
-        <h2>03 — 延伸平台</h2>
-        <p>連結 AI 教學紀錄、AI 藝術創作與社群平台，建立完整的 AI 藝術教學入口。</p>
-      </div>
-
-      <div class="grid grid-4">
-        <a class="card platform-card" href="https://www.facebook.com/educationforfuture/" target="_blank">
-          <div>
-            <span class="tag">Teaching</span>
-            <h3>AI教學觀察所</h3>
-            <p>分享 AI 教學案例、課程設計與學生學習成果。</p>
-          </div>
-          <div class="arrow">前往 →</div>
-        </a>
-
-        <a class="card platform-card" href="#" target="_blank">
-          <div>
-            <span class="tag">Studio</span>
-            <h3>AI藝術創新實驗室</h3>
-            <p>展示 AI 藝術創作、實驗作品與跨媒材創作流程。</p>
-          </div>
-          <div class="arrow">前往 →</div>
-        </a>
-
-        <a class="card platform-card" href="https://www.facebook.com/tsengkuocheng" target="_blank">
-          <div>
-            <span class="tag">Facebook</span>
-            <h3>個人創作與教學紀錄</h3>
-            <p>分享 AI 藝術創作與教學歷程。</p>
-          </div>
-          <div class="arrow">前往 →</div>
-        </a>
-
-        <a class="card platform-card" href="#" target="_blank">
-          <div>
-            <span class="tag">Instagram</span>
-            <h3>Instagram</h3>
-            <p>展示圖像作品、創作片段與視覺實驗。</p>
-          </div>
-          <div class="arrow">前往 →</div>
-        </a>
-      </div>
-    </section>
-
-    <section id="my-gallery" class="container">
-      <div class="section-title">
-        <h2>04 — 我的 AI 藝術作品展示</h2>
-        <p>展示教師個人的 AI 藝術創作、系列作品與實驗成果。</p>
-      </div>
-
-      <div class="grid grid-3">
-        <article class="card">
-          <a href="https://youtu.be/Zadb_fesAZA" target="_blank" style="text-decoration:none; color:inherit;">
-            <div class="work-image" style="
-              background-image:
-              linear-gradient(to top, rgba(0,0,0,.68), transparent),
-              url('images/test.png');
-              position:relative;">
-              <div style="
-                position:absolute;
-                top:50%;
-                left:50%;
-                transform:translate(-50%,-50%);
-                font-size:44px;
-                color:white;
-                text-shadow:0 6px 20px rgba(0,0,0,.45);">▶</div>
-            </div>
-            <span class="tag">AI Video</span>
-            <h3>編織巨貓</h3>
-            <p>AI 生成的大型纖維藝術裝置想像，點擊卡片可觀看影片作品。</p>
-          </a>
-        </article>
-      </div>
-    </section>
-
-    <section id="student-gallery" class="container">
-      <div class="section-title">
-        <h2>05 — 學生作品展示</h2>
-        <p>之後可依照 AI 圖像生成、影片分鏡、Prompt 設計與作品集成果分類展示學生作品。</p>
-      </div>
-      <div class="placeholder">
-        學生作品尚未上傳。之後可將圖片放入 images/students/ 資料夾，再新增作品卡片。
-      </div>
-    </section>
-
-    <section id="tools" class="container">
-      <div class="tools">
-        <div class="section-title">
-          <h2>06 — AI 工具教學</h2>
-          <p>學生將學會如何從文字生成圖像，並進一步延伸為影片與作品集。</p>
-        </div>
-
-        <div class="grid grid-2">
-          <article class="card">
-            <span class="tag">Text to Image</span>
-            <h3>文字轉圖像</h3>
-            <ul>
-              <li>主體描述</li>
-              <li>風格與媒材</li>
-              <li>構圖與鏡頭</li>
-              <li>光影與氛圍</li>
-            </ul>
-          </article>
-
-          <article class="card">
-            <span class="tag">Image to Video</span>
-            <h3>圖像轉影片</h3>
-            <ul>
-              <li>分鏡設計</li>
-              <li>鏡頭運動</li>
-              <li>情緒節奏</li>
-              <li>影片輸出與發表</li>
-            </ul>
-          </article>
-        </div>
-
-        <article class="card" style="margin-top:30px;">
-          <span class="tag">Prompt Lab</span>
-          <h3>Prompt 提示詞教學</h3>
-          <p>提示詞不是單純下指令，而是一種創作語言。好的提示詞能幫助 AI 更接近你的想像，也能讓創作者更清楚自己的選擇。</p>
-
-          <div class="prompt-grid">
-            <div class="prompt-chip"><strong>主體</strong>人物、物件、場景</div>
-            <div class="prompt-chip"><strong>動作</strong>正在發生的事</div>
-            <div class="prompt-chip"><strong>場景</strong>時間、地點、環境</div>
-            <div class="prompt-chip"><strong>風格</strong>攝影、插畫、水墨</div>
-            <div class="prompt-chip"><strong>構圖</strong>近景、全景、角度</div>
-            <div class="prompt-chip"><strong>光影</strong>柔光、逆光、霓虹</div>
-            <div class="prompt-chip"><strong>氛圍</strong>寧靜、神秘、未來感</div>
-          </div>
-        </article>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="container">© 2026 AI Art Learning Studio｜Designed for AI Art Education</div>
-  </footer>
+<script>
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')}),{threshold:.1});document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  const chips=[...document.querySelectorAll('.chip')], tools=[...document.querySelectorAll('.tool')], search=document.getElementById('toolSearch');let current='all';
+  function filterTools(){const q=search.value.trim().toLowerCase();tools.forEach(t=>{const cat=t.dataset.cat||'',key=(t.dataset.key||'')+' '+t.innerText.toLowerCase();t.style.display=((current==='all'||cat.includes(current))&&(!q||key.includes(q)))?'block':'none'})}
+  chips.forEach(c=>c.addEventListener('click',()=>{chips.forEach(x=>x.classList.remove('active'));c.classList.add('active');current=c.dataset.filter;filterTools()}));search.addEventListener('input',filterTools);
+  const modal=document.getElementById('modal'), title=document.getElementById('modalTitle'), text=document.getElementById('modalText');document.querySelectorAll('[data-modal]').forEach(b=>b.addEventListener('click',()=>{const [a,...rest]=b.dataset.modal.split('|');title.textContent=a;text.textContent=rest.join('|');modal.classList.add('open')}));
+  modal.querySelector('.modal-close').addEventListener('click',()=>modal.classList.remove('open'));modal.addEventListener('click',e=>{if(e.target===modal)modal.classList.remove('open')});document.addEventListener('keydown',e=>{if(e.key==='Escape')modal.classList.remove('open')});
+</script>
 </body>
 </html>
