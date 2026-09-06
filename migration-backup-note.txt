@@ -1,0 +1,1 @@
+Teaching observatory snapshot preserved before repository separation.
